@@ -1,0 +1,534 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Last Fibanachi Survival: инди-выживание для Android и Windows. Скачать игру, что нового, партнёры.">
+<meta property="og:title" content="Last Fibanachi Survival">
+<meta property="og:image" content="https://fibanachi.com/img/hero.jpg">
+<title>Last Fibanachi Survival</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Manrope:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: cinematic night. Letterboxed full-bleed key art with grain and vignette, a floating download dock that
+   overlaps the hero edge, then a calm editorial column. One accent: the amber light from the hatch.
+   Deliberate single dark look (the game lives at night), so tokens are fixed and color-scheme is dark. */
+:root{
+  --ink:#07090c;          /* deepest ground */
+  --night:#0b0e13;        /* page ground, blue-black */
+  --panel:#11161d;        /* raised surfaces */
+  --panel-2:#161c25;
+  --line:rgba(206,220,240,.10);
+  --line-2:rgba(206,220,240,.18);
+  --frost:#eef2f7;        /* main text */
+  --fog:#98a6b8;          /* secondary text */
+  --dim:#66748a;
+  --hatch:#f3a13a;        /* amber hatch light */
+  --hatch-hi:#ffc477;
+  --ember:#c4621b;
+  --display:"Unbounded","Arial Black",system-ui,sans-serif;
+  --body:"Manrope","Segoe UI",system-ui,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Consolas,monospace;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{margin:0}
+img{max-width:100%}
+[hidden]{display:none!important}
+html{background:var(--ink)}
+body{background:var(--night);color:var(--frost);font-family:var(--body);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--hatch);outline-offset:3px;border-radius:6px}
+.wrap{max-width:1120px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+.label{font-family:var(--mono);font-size:11.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--hatch)}
+
+/* film grain over everything, very quiet */
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:50;opacity:.06;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
+
+/* top bar */
+.bar{position:absolute;top:0;left:0;right:0;z-index:5;padding-top:env(safe-area-inset-top,0px)}
+.bar .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:18px}
+.mark{font-family:var(--display);font-weight:800;font-size:15px;letter-spacing:.06em;text-decoration:none}
+.mark i{font-style:normal;color:var(--hatch)}
+.nav{display:flex;gap:22px;font-size:14px;color:var(--fog)}
+.nav a{text-decoration:none}
+.nav a:hover{color:var(--frost)}
+
+/* hero */
+.hero{position:relative;background:var(--ink);overflow:hidden}
+.hero-img{display:block;width:100%;height:clamp(460px,62vw,760px);object-fit:cover;object-position:52% 38%;transform:scale(1.02)}
+.hero::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:
+    radial-gradient(120% 90% at 50% 35%,transparent 40%,rgba(7,9,12,.72) 100%),
+    linear-gradient(180deg,rgba(7,9,12,.55) 0%,transparent 22%,transparent 48%,rgba(11,14,19,.92) 86%,var(--night) 100%)}
+.hero-copy{position:absolute;left:0;right:0;bottom:clamp(96px,11vw,150px);z-index:2}
+h1{font-family:var(--display);font-weight:800;font-size:clamp(38px,7.2vw,96px);line-height:.92;letter-spacing:-.015em;margin:14px 0 18px;text-wrap:balance}
+h1 .glow{color:var(--hatch);text-shadow:0 0 38px rgba(243,161,58,.45)}
+.lede{max-width:30em;margin:0;color:#d5dde8;font-size:clamp(16px,1.7vw,19px)}
+
+/* download dock */
+.dock{position:relative;z-index:3;margin-top:calc(-1 * clamp(70px,8vw,104px))}
+.dock-inner{display:grid;grid-template-columns:1.25fr 1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line-2);border-radius:16px;overflow:hidden;
+  box-shadow:0 30px 80px -30px rgba(0,0,0,.9),0 0 0 1px rgba(243,161,58,.06);backdrop-filter:blur(10px)}
+.plat{background:rgba(17,22,29,.94);padding:22px 22px 20px;display:grid;gap:14px;align-content:start;min-width:0}
+.plat.lead{background:linear-gradient(160deg,rgba(243,161,58,.14),rgba(17,22,29,.96) 55%)}
+.plat-h{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
+.plat-h h3{margin:0;font-family:var(--display);font-weight:700;font-size:20px;letter-spacing:.01em}
+.v{font-family:var(--mono);font-size:12px;color:var(--fog)}
+.btn{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:52px;padding:0 18px;border-radius:10px;text-decoration:none;font-weight:700;font-size:16px;transition:transform .15s ease,background .15s ease,border-color .15s ease}
+.btn-primary{background:var(--hatch);color:#1b1004;box-shadow:0 8px 28px -10px rgba(243,161,58,.7)}
+.btn-primary:hover{background:var(--hatch-hi);transform:translateY(-1px)}
+.btn-line{border:1px solid var(--line-2);color:var(--frost)}
+.btn-line:hover{border-color:var(--hatch);transform:translateY(-1px)}
+.btn .arr{font-family:var(--mono);font-weight:500;opacity:.8}
+.btn[aria-disabled="true"]{opacity:.45;pointer-events:none}
+.facts{display:grid;gap:3px;font-family:var(--mono);font-size:11.5px;color:var(--dim);font-variant-numeric:tabular-nums}
+.facts b{color:var(--fog);font-weight:500}
+.facts .h{overflow-wrap:anywhere}
+.dock-note{margin:12px 2px 0;font-size:13px;color:var(--dim)}
+
+/* sections */
+section{padding-block:clamp(64px,8vw,104px) 0}
+.sec-head{display:grid;gap:10px;margin-bottom:34px;max-width:40em}
+h2{font-family:var(--display);font-weight:700;font-size:clamp(26px,3.6vw,44px);line-height:1.05;letter-spacing:-.01em;margin:0;text-wrap:balance}
+.sec-head p{margin:0;color:var(--fog)}
+
+/* what's new */
+.feats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 56px}
+.feat{padding:22px 0;border-top:1px solid var(--line);display:grid;gap:6px;min-width:0}
+.feat h3{margin:0;font-size:18px;font-weight:700;display:flex;align-items:center;gap:12px}
+.feat h3::before{content:"";width:18px;height:2px;background:var(--hatch);box-shadow:0 0 10px var(--hatch);flex:none}
+.feat p{margin:0;color:var(--fog);font-size:15.5px;padding-left:30px}
+
+/* showcase */
+.show{display:grid;grid-template-columns:1.6fr 1fr;gap:14px}
+.shot{position:relative;margin:0;border-radius:14px;overflow:hidden;border:1px solid var(--line);background:var(--panel)}
+.shot img{display:block;width:100%;height:100%;object-fit:cover;max-width:100%;transition:transform .8s ease}
+.shot:hover img{transform:scale(1.035)}
+.shot.big{grid-row:span 2;min-height:420px}
+.shot.small{aspect-ratio:16/10}
+.shot figcaption{position:absolute;left:0;right:0;bottom:0;padding:44px 18px 16px;background:linear-gradient(transparent,rgba(7,9,12,.92));display:grid;gap:2px}
+.shot figcaption b{font-family:var(--display);font-weight:700;font-size:17px}
+.shot figcaption span{color:var(--fog);font-size:14px}
+
+/* versions */
+.versions{display:grid;gap:14px}
+.ver{display:grid;grid-template-columns:150px 1fr;gap:24px;padding:24px;border:1px solid var(--line);border-radius:14px;background:var(--panel);min-width:0}
+.ver.now{border-color:rgba(243,161,58,.35);background:linear-gradient(120deg,rgba(243,161,58,.08),var(--panel) 45%)}
+.ver-num{font-family:var(--display);font-weight:700;font-size:30px;line-height:1}
+.ver-date{font-family:var(--mono);font-size:12px;color:var(--fog);margin-top:8px}
+.pill{display:inline-block;margin-top:10px;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--hatch);border:1px solid rgba(243,161,58,.4);border-radius:999px;padding:3px 9px}
+.ver ul{margin:0;padding:0;list-style:none;display:grid;gap:7px;color:#cbd4df;min-width:0}
+.ver li{padding-left:18px;position:relative}
+.ver li::before{content:"";position:absolute;left:0;top:.72em;width:6px;height:6px;border-radius:50%;background:var(--dim)}
+.ver.now li::before{background:var(--hatch)}
+
+/* community + faq */
+.duo{display:grid;grid-template-columns:1fr 1.2fr;gap:48px}
+.links{display:grid;gap:10px}
+.lk{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:18px 20px;border:1px solid var(--line);border-radius:12px;background:var(--panel);text-decoration:none;min-width:0;transition:border-color .15s ease}
+.lk:hover{border-color:rgba(243,161,58,.45)}
+.lk b{display:block;font-size:16px}
+.lk small{display:block;font-family:var(--mono);font-size:11.5px;color:var(--dim);overflow-wrap:anywhere}
+.lk .arr{font-family:var(--mono);color:var(--hatch)}
+details{border-top:1px solid var(--line);padding-block:16px}
+details:last-child{border-bottom:1px solid var(--line)}
+summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:16px;font-weight:700;font-size:16.5px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-family:var(--mono);font-weight:400;color:var(--hatch);transition:transform .2s ease}
+details[open] summary::after{transform:rotate(45deg)}
+details p{margin:10px 0 0;color:var(--fog);max-width:60ch}
+
+/* developer */
+.dev{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);border:1px solid var(--line-2);border-radius:18px;overflow:hidden;background:radial-gradient(90% 120% at 0% 0%,rgba(243,161,58,.16),transparent 60%),var(--panel)}
+.dev-l{padding:clamp(24px,4vw,44px);display:grid;gap:18px;align-content:start;min-width:0}
+.who{display:flex;align-items:center;gap:16px}
+.ava{width:76px;height:76px;border-radius:50%;object-fit:cover;border:2px solid var(--hatch);box-shadow:0 0 0 5px rgba(243,161,58,.12),0 0 30px rgba(243,161,58,.35);flex:none}
+.who b{display:block;font-family:var(--display);font-weight:800;font-size:24px;letter-spacing:.01em}
+.who span{font-family:var(--mono);font-size:12px;color:var(--fog)}
+.dev-l p{margin:0;color:#cbd4df;max-width:36em}
+.stats{display:flex;flex-wrap:wrap;gap:10px 28px;font-variant-numeric:tabular-nums}
+.stat b{display:block;font-family:var(--display);font-weight:700;font-size:28px;line-height:1.1}
+.stat span{font-size:13px;color:var(--fog)}
+.yt{display:inline-flex;align-items:center;gap:12px;justify-self:start;min-height:52px;padding:0 22px 0 16px;border-radius:999px;background:#e8332a;color:#fff;font-weight:700;text-decoration:none;box-shadow:0 10px 30px -12px rgba(232,51,42,.8);transition:transform .15s ease}
+.yt:hover{transform:translateY(-1px)}
+.yt svg{width:26px;height:18px;flex:none}
+.dev-r{border-left:1px solid var(--line);display:grid;min-width:0}
+.ep{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:16px;padding:22px clamp(18px,3vw,30px);border-bottom:1px solid var(--line);text-decoration:none;min-width:0;transition:background .15s ease}
+.ep:last-child{border-bottom:0}
+a.ep:hover{background:rgba(243,161,58,.06)}
+.ep-n{font-family:var(--mono);font-size:12px;color:var(--hatch);letter-spacing:.1em}
+.ep b{display:block;font-size:16px;line-height:1.35}
+.ep small{display:block;color:var(--fog);font-size:13px;margin-top:3px}
+.ep .arr{font-family:var(--mono);color:var(--fog)}
+.ep.next b{color:var(--fog)}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}
+.chip{display:inline-flex;align-items:center;gap:10px;min-height:46px;padding:0 18px;border-radius:999px;border:1px solid rgba(238,242,247,.28);background:rgba(7,9,12,.45);backdrop-filter:blur(6px);text-decoration:none;font-weight:700;font-size:15px}
+.chip:hover{border-color:var(--hatch)}
+.chip .dot{width:9px;height:9px;border-radius:50%;background:#e8332a;box-shadow:0 0 10px #e8332a}
+@media (max-width:880px){.dev{grid-template-columns:1fr}.dev-r{border-left:0;border-top:1px solid var(--line)}}
+
+footer{margin-top:clamp(72px,9vw,120px);border-top:1px solid var(--line);background:var(--ink)}
+footer .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;padding-block:28px calc(28px + env(safe-area-inset-bottom,0px));font-size:13.5px;color:var(--dim)}
+
+@media (max-width:880px){
+  .dock-inner{grid-template-columns:1fr}
+  .show{grid-template-columns:1fr}
+  .shot.big{min-height:0;aspect-ratio:16/9;grid-row:auto}
+  .duo{grid-template-columns:1fr;gap:40px}
+}
+@media (max-width:600px){
+  .nav{display:none}
+  .feats{grid-template-columns:1fr}
+  .ver{grid-template-columns:1fr;gap:14px}
+  .hero-img{height:520px;object-position:60% 40%}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+/* language switch */
+.lang{display:inline-flex;border:1px solid var(--line-2);border-radius:999px;overflow:hidden;background:rgba(7,9,12,.5);backdrop-filter:blur(6px)}
+.lang button{font:600 12px/1 var(--mono);letter-spacing:.08em;color:var(--fog);background:transparent;border:0;padding:9px 12px;min-height:34px;cursor:pointer}
+.lang button[aria-pressed="true"]{background:var(--hatch);color:#1b1004}
+.bar-r{display:flex;align-items:center;gap:22px}
+
+/* partners */
+.partners{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+.pt{display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:center;padding:20px;border:1px solid var(--line);border-radius:14px;background:var(--panel);text-decoration:none;min-width:0;transition:border-color .15s ease,transform .15s ease}
+.pt:hover{border-color:rgba(243,161,58,.45);transform:translateY(-1px)}
+.pt-ava{width:58px;height:58px;border-radius:50%;object-fit:cover;border:2px solid var(--line-2);display:grid;place-items:center;font-family:var(--display);font-weight:800;font-size:20px;background:linear-gradient(140deg,#2a3546,#141a22);color:var(--frost)}
+.pt b{display:block;font-size:17px}
+.pt small{display:block;font-family:var(--mono);font-size:11.5px;color:var(--dim);overflow-wrap:anywhere}
+.pt .subs{display:block;margin-top:4px;font-family:var(--display);font-weight:700;font-size:15px;color:var(--frost);font-variant-numeric:tabular-nums}
+.pt .role{display:inline-block;margin-top:6px;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--hatch)}
+.pt.slot{border-style:dashed;cursor:default}
+.pt.slot:hover{transform:none;border-color:var(--line)}
+.pt.slot .pt-ava{background:transparent;border-style:dashed;color:var(--dim)}
+
+.join{margin-top:22px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);border:1px solid rgba(243,161,58,.3);border-radius:18px;overflow:hidden;background:radial-gradient(100% 140% at 100% 0%,rgba(243,161,58,.14),transparent 55%),var(--panel)}
+.join-l{padding:clamp(22px,4vw,40px);display:grid;gap:16px;align-content:start;min-width:0}
+.join-l h3{margin:0;font-family:var(--display);font-weight:700;font-size:clamp(22px,2.6vw,30px);line-height:1.1}
+.perks{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.perks li{display:grid;grid-template-columns:22px 1fr;gap:10px;color:#cbd4df}
+.perks li::before{content:"";width:10px;height:10px;margin-top:.5em;border-radius:2px;background:var(--hatch);box-shadow:0 0 10px var(--hatch);transform:rotate(45deg)}
+.steps{font-family:var(--mono);font-size:12px;color:var(--fog);display:flex;flex-wrap:wrap;gap:6px 14px}
+.steps span{white-space:nowrap}
+.join form{padding:clamp(22px,4vw,40px);border-left:1px solid var(--line);display:grid;gap:12px;min-width:0}
+.field{display:grid;gap:6px}
+.field label{font-size:13px;color:var(--fog);font-weight:500}
+.field input,.field select,.field textarea{font:500 15px/1.4 var(--body);color:var(--frost);background:rgba(7,9,12,.55);border:1px solid var(--line-2);border-radius:10px;padding:12px 14px;min-height:46px;width:100%}
+.field textarea{min-height:84px;resize:vertical}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--hatch);box-shadow:0 0 0 3px rgba(243,161,58,.18)}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.submit{display:flex;align-items:center;justify-content:center;min-height:52px;border-radius:10px;border:0;background:var(--hatch);color:#1b1004;font:700 16px var(--body);cursor:pointer;box-shadow:0 8px 28px -10px rgba(243,161,58,.7)}
+.submit:hover{background:var(--hatch-hi)}
+.form-msg{margin:0;font-size:13.5px;color:var(--fog)}
+.form-msg.ok{color:#9fd6a8}
+@media (max-width:880px){.join{grid-template-columns:1fr}.join form{border-left:0;border-top:1px solid var(--line)}}
+@media (max-width:480px){.row2{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="bar">
+    <div class="wrap">
+      <a class="mark" href="#top">LAST FIBANACHI <i>SURVIVAL</i></a>
+      <div class="bar-r">
+        <nav class="nav" aria-label="Menu">
+          <a href="#new" data-i18n="nav_new">Что нового</a><a href="#world" data-i18n="nav_world">Мир</a><a href="#partners" data-i18n="nav_partners">Партнёры</a><a href="#faq" data-i18n="nav_faq">Вопросы</a>
+        </nav>
+        <div class="lang" role="group" aria-label="Language">
+          <button type="button" id="lang-ru" data-lang="ru" aria-pressed="true">RU</button>
+          <button type="button" id="lang-en" data-lang="en" aria-pressed="false">EN</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <img class="hero-img" id="top" src="img/hero.jpg" data-i18n-alt="alt_hero" alt="Выживший открывает светящийся люк, рядом наставник, позади Подстанция и заражённые">
+  <div class="hero-copy">
+    <div class="wrap">
+      <div class="label">Survival · Android · Windows</div>
+      <h1><span data-i18n="h1_a">Выживи наверху.</span><br><span class="glow" data-i18n="h1_b">Строй внизу.</span></h1>
+      <p class="lede" data-i18n="lede">Добывай, строй дом, отбивай ночные рейды и копай свою базу под землёй. Инди-выживание, которое растёт каждую неделю вместе с игроками.</p>
+      <div class="hero-ctas"><a class="chip" href="https://www.youtube.com/watch?v=fYLGmgd4PPw" target="_blank" rel="noopener"><span class="dot"></span><span data-i18n="watch">Смотреть ролик про 0.2</span></a></div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="wrap dock" id="download">
+    <div class="dock-inner">
+      <div class="plat lead">
+        <div class="plat-h"><h3>Android</h3><span class="v">v0.2.0</span></div>
+        <a class="btn btn-primary" href="#download"><span data-i18n="dl_apk">Скачать APK</span> <span class="arr">151 MB ↓</span></a>
+        <div class="facts"><div data-i18n="apk_note">Обновляет 0.1, сохранения остаются</div><div class="h">SHA-256 <b>93C2D91D…45FB4206</b></div></div>
+      </div>
+      <div class="plat">
+        <div class="plat-h"><h3>Windows</h3><span class="v">v0.2.0</span></div>
+        <a class="btn btn-line" href="#download"><span data-i18n="dl_zip">Скачать ZIP</span> <span class="arr">112 MB ↓</span></a>
+        <div class="facts"><div data-i18n="zip_note">Распакуй и запусти .exe</div><div class="h">SHA-256 <b>759E8A57…D808AD67</b></div></div>
+      </div>
+      <div class="plat">
+        <div class="plat-h"><h3>iOS</h3><span class="v" data-i18n="soon">скоро</span></div>
+        <span class="btn btn-line" aria-disabled="true"><span data-i18n="in_dev">В разработке</span> <span class="arr">TestFlight</span></span>
+        <div class="facts"><div data-i18n="ios_note">Сообщим в канале, когда откроем тест</div></div>
+      </div>
+    </div>
+    <p class="dock-note" data-i18n="proto_dl">Прототип: ссылки на файлы появятся после выбора хостинга.</p>
+  </div>
+
+  <section id="new">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="label" data-i18n="new_label">Версия 0.2.0 · 17 октября 2026</div>
+        <h2 data-i18n="new_h">За две недели игра изменилась почти полностью</h2>
+      </div>
+      <div class="feats">
+        <div class="feat"><h3 data-i18n="f1h">Подвал под домом</h3><p data-i18n="f1p">Ставишь люк, крафтишь бур и прорубаешь базу клетку за клеткой.</p></div>
+        <div class="feat"><h3 data-i18n="f2h">Честная добыча</h3><p data-i18n="f2p">Дерево качается, трещит и отдаёт ресурс только когда падает.</p></div>
+        <div class="feat"><h3 data-i18n="f3h">Крафт по времени</h3><p data-i18n="f3p">Верстак работает от 5 до 10 секунд, в очереди до трёх предметов.</p></div>
+        <div class="feat"><h3 data-i18n="f4h">Тяжёлый бой</h3><p data-i18n="f4p">На бегу нельзя бить и стрелять. Патроны приходится искать.</p></div>
+        <div class="feat"><h3 data-i18n="f5h">Живой голод</h3><p data-i18n="f5p">Бегаешь, и голод растёт быстрее. Отдыхаешь, и медленнее.</p></div>
+        <div class="feat"><h3 data-i18n="f6h">Мир из локаций</h3><p data-i18n="f6p">Карта мира, Густой лес и Подстанция с цепью на воротах.</p></div>
+        <div class="feat"><h3 data-i18n="f7h">Наставник</h3><p data-i18n="f7p">Новичка встречают у костра и учат выживать с первой ветки.</p></div>
+        <div class="feat"><h3 data-i18n="f8h">Для любого телефона</h3><p data-i18n="f8p">30 или 60 FPS, автоматическое качество, крупные кнопки меню.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="world">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="label" data-i18n="world_label">Мир</div>
+        <h2 data-i18n="world_h">Наверху ночь и заражённые. Внизу тепло.</h2>
+      </div>
+      <div class="show">
+        <figure class="shot big"><img src="img/basement.jpg" data-i18n-alt="alt_base" alt="Разрез подземной базы с буром" loading="lazy"><figcaption><b data-i18n="w1h">Подземная база</b><span data-i18n="w1p">Цель, к которой растёт подвал. В игре уже есть люк, бур и первые клетки.</span></figcaption></figure>
+        <figure class="shot small"><img src="img/substation.jpg" data-i18n-alt="alt_sub" alt="Подстанция ночью" loading="lazy"><figcaption><b data-i18n="w2h">Подстанция</b><span data-i18n="w2p">Ворота на цепи и чертёж бура внутри</span></figcaption></figure>
+        <figure class="shot small"><img src="img/mentor.jpg" data-i18n-alt="alt_mentor" alt="Герой и наставник у костра" loading="lazy"><figcaption><b data-i18n="w3h">Наставник</b><span data-i18n="w3p">Первый, кто встретит тебя в этом мире</span></figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section id="dev">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="label" data-i18n="dev_label">Кто делает игру</div>
+        <h2 data-i18n="dev_h">Один разработчик. Каждый шаг на YouTube.</h2>
+      </div>
+      <div class="dev">
+        <div class="dev-l">
+          <div class="who"><img class="ava" src="img/avatar.jpg" alt="Fibanachi"><div><b>Fibanachi</b><span data-i18n="dev_role">YouTube · автор Last Fibanachi Survival</span></div></div>
+          <p data-i18n="dev_p">Меня не было на YouTube четыре года. Я вернулся со своей игрой и делаю её в одиночку. В роликах показываю всё как есть: что сломали игроки, что я починил и что будет дальше.</p>
+          <div class="stats">
+            <div class="stat"><b data-i18n="st0b">127 тыс.</b><span data-i18n="st0">подписчиков на канале</span></div>
+            <div class="stat"><b data-i18n="st1b">17 тыс.</b><span data-i18n="st1">просмотров первого ролика за 2 недели</span></div>
+            <div class="stat"><b>2</b><span data-i18n="st2">версии игры за 15 дней</span></div>
+          </div>
+          <a class="yt" href="https://www.youtube.com/watch?v=fYLGmgd4PPw" target="_blank" rel="noopener"><svg viewBox="0 0 26 18" aria-hidden="true"><rect width="26" height="18" rx="5" fill="#fff"/><path d="M10.5 5v8l7-4z" fill="#e8332a"/></svg><span data-i18n="subscribe">Подписаться на канал</span></a>
+        </div>
+        <div class="dev-r">
+          <a class="ep" href="https://www.youtube.com/watch?v=fYLGmgd4PPw" target="_blank" rel="noopener"><span class="ep-n">EP 02</span><span><b data-i18n="ep2h">Новое обновление LFS 0.2</b><small data-i18n="ep2p">Подвал, новая добыча и бой, который нельзя пробежать</small></span><span class="arr">↗</span></a>
+          <a class="ep" href="https://www.youtube.com/watch?v=fYLGmgd4PPw" target="_blank" rel="noopener"><span class="ep-n">EP 01</span><span><b data-i18n="ep1h">Я вернулся спустя 4 года… и создал свою игру</b><small data-i18n="ep1p">Как всё началось. 17 тыс. просмотров</small></span><span class="arr">↗</span></a>
+          <div class="ep next"><span class="ep-n">EP 03</span><span><b data-i18n="ep3h">Бункер Чарли</b><small data-i18n="ep3p">Следующий выпуск. Подпишись, чтобы не пропустить</small></span><span class="arr">···</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="partners">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="label" data-i18n="pt_label">Партнёры игры</div>
+        <h2 data-i18n="pt_h">Ютуберы и стримеры, которые играют первыми</h2>
+        <p data-i18n="pt_p">Партнёры получают новые версии раньше всех и показывают их своей аудитории.</p>
+      </div>
+      <div class="partners">
+        <a class="pt" href="https://www.youtube.com/watch?v=fYLGmgd4PPw" target="_blank" rel="noopener"><img class="pt-ava" src="img/avatar.jpg" alt="Fibanachi"><span><b>Fibanachi</b><small>YouTube</small><span class="subs" data-i18n="sub_fib">127 тыс. подписчиков</span><span class="role" data-i18n="role_dev">Разработчик</span></span></a>
+        <a class="pt" href="https://www.youtube.com/@urbnxr" target="_blank" rel="noopener"><img class="pt-ava" src="img/urban.jpg" alt="Mr. Urban"><span><b>Mr. Urban</b><small>YouTube · @urbnxr</small><span class="subs" data-i18n="sub_urb">800 тыс. подписчиков</span><span class="role" data-i18n="role_partner">Партнёр</span></span></a>
+        <div class="pt slot"><span class="pt-ava" aria-hidden="true">+</span><span><b data-i18n="slot_h">Здесь может быть твой канал</b><small data-i18n="slot_p">YouTube, Twitch, TikTok</small></span></div>
+      </div>
+
+      <div class="join" id="join">
+        <div class="join-l">
+          <div class="label" data-i18n="join_label">Стать партнёром</div>
+          <h3 data-i18n="join_h">Получай обновления раньше других</h3>
+          <ul class="perks">
+            <li data-i18n="perk1">Новые версии до публичного выхода</li>
+            <li data-i18n="perk2">Твой канал в базе партнёров на этом сайте</li>
+            <li data-i18n="perk3">Прямая связь с разработчиком</li>
+          </ul>
+          <div class="steps"><span data-i18n="step1">1 · Заявка</span><span data-i18n="step2">2 · Проверка канала</span><span data-i18n="step3">3 · Ты в базе партнёров</span></div>
+        </div>
+        <form id="partner-form" novalidate>
+          <div class="field"><label for="pf-channel" data-i18n="pf_channel">Ссылка на канал</label><input id="pf-channel" name="channel" type="url" required placeholder="https://youtube.com/@..."></div>
+          <div class="row2">
+            <div class="field"><label for="pf-platform" data-i18n="pf_platform">Платформа</label>
+              <select id="pf-platform" name="platform"><option>YouTube</option><option>Twitch</option><option>TikTok</option><option value="other" data-i18n="pf_other">Другое</option></select></div>
+            <div class="field"><label for="pf-audience" data-i18n="pf_audience">Подписчики</label><input id="pf-audience" name="audience" type="text" inputmode="numeric" placeholder="5 000"></div>
+          </div>
+          <div class="field"><label for="pf-contact" data-i18n="pf_contact">Контакт для связи (Telegram или почта)</label><input id="pf-contact" name="contact" type="text" required placeholder="@nickname"></div>
+          <div class="field"><label for="pf-about" data-i18n="pf_about">Что планируешь снимать</label><textarea id="pf-about" name="about" data-i18n-ph="pf_about_ph" placeholder="Обзор, прохождение, стрим кооператива..."></textarea></div>
+          <button class="submit" type="submit" data-i18n="pf_send">Подать заявку</button>
+          <p class="form-msg" id="pf-msg" role="status" data-i18n="pf_hint">Прототип: заявка пока никуда не отправляется. На сайте подключим приём заявок.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section id="versions">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="label" data-i18n="ver_label">История версий</div>
+        <h2 data-i18n="ver_h">Каждое обновление</h2>
+      </div>
+      <div class="versions">
+        <article class="ver now">
+          <div><div class="ver-num">0.2.0</div><div class="ver-date">17.10.2026</div><span class="pill" data-i18n="current">Текущая</span></div>
+          <ul>
+            <li data-i18n="v2a">Подвал: люк, буровая установка, клетки породы</li>
+            <li data-i18n="v2b">Добыча: ресурс только после падения дерева</li>
+            <li data-i18n="v2c">Крафт на верстаке 5–10 секунд, очередь на три предмета</li>
+            <li data-i18n="v2d">На бегу нельзя бить и стрелять, патроны нужно искать</li>
+            <li data-i18n="v2e">Наставник, мир из локаций, новые иконки и одежда героя</li>
+            <li data-i18n="v2f">Переключатель 30/60 FPS и автоматическое качество графики</li>
+          </ul>
+        </article>
+        <article class="ver">
+          <div><div class="ver-num">0.1.0</div><div class="ver-date">02.10.2026</div></div>
+          <ul>
+            <li data-i18n="v1a">Первая публичная версия для Android и Windows</li>
+            <li data-i18n="v1b">Дом, верстак, рейды на базу, Подстанция</li>
+            <li data-i18n="v1c">Кооп на двоих по локальной сети</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="wrap duo">
+      <div>
+        <div class="sec-head">
+          <div class="label" data-i18n="com_label">Сообщество</div>
+          <h2 data-i18n="com_h">Пиши, ломай, предлагай</h2>
+          <p data-i18n="com_p">Лучшие находки игроков попадают в игру. Автор лучшей получит своё имя в мире игры.</p>
+        </div>
+        <div class="links">
+          <a class="lk" href="https://www.youtube.com/watch?v=fYLGmgd4PPw" target="_blank" rel="noopener"><span><b data-i18n="lk_yt">Ролик про версию 0.2</b><small>YouTube</small></span><span class="arr">↗</span></a>
+          <a class="lk" href="https://t.me/fibsail" target="_blank" rel="noopener"><span><b data-i18n="lk_tg">Telegram-канал</b><small>t.me/fibsail</small></span><span class="arr">↗</span></a>
+          <a class="lk" href="https://discord.gg/wJKxjku5c4" target="_blank" rel="noopener"><span><b>Discord</b><small>discord.gg/wJKxjku5c4</small></span><span class="arr">↗</span></a>
+        </div>
+      </div>
+      <div>
+        <div class="sec-head">
+          <div class="label" data-i18n="faq_label">Вопросы</div>
+          <h2 data-i18n="faq_h">Коротко о главном</h2>
+        </div>
+        <details><summary data-i18n="q1">Как обновиться с 0.1 и не потерять прогресс?</summary><p data-i18n="a1">На Android установи новый APK поверх старой игры. Удалять ничего не нужно, сохранение останется.</p></details>
+        <details><summary data-i18n="q2">Ставил «LFS Player Preview 02». Что делать?</summary><p data-i18n="a2">Это была отдельная тестовая сборка. Удали её и поставь APK с этой страницы. Прогресс из неё не переносится.</p></details>
+        <details><summary data-i18n="q3">Игра тормозит на телефоне</summary><p data-i18n="a3">Открой меню паузы и выбери 30 FPS и качество LOW. На слабых телефонах 60 FPS может тормозить.</p></details>
+        <details><summary data-i18n="q4">Где взять бур для подвала?</summary><p data-i18n="a4">Чертёж дают за Подстанцию. Буровую установку крафтят на продвинутом верстаке, нужен 8-й уровень.</p></details>
+        <details><summary data-i18n="q5">Будет iOS и кооп через интернет?</summary><p data-i18n="a5">Да. Кооп на двоих уже работает по локальной сети, серверный в работе. iOS выйдет через TestFlight.</p></details>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span data-i18n="foot1">Last Fibanachi Survival · делает Fibanachi</span>
+    <span data-i18n="foot2">Нашёл баг? Напиши в Telegram-канале.</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var EN={
+    nav_new:"What's new",nav_world:"World",nav_partners:"Partners",nav_faq:"FAQ",
+    alt_hero:"A survivor opens a glowing hatch, the mentor beside him, the Substation and the infected behind",
+    h1_a:"Survive above.",h1_b:"Build below.",
+    lede:"Gather, build a home, hold off night raids and dig your own base underground. An indie survival game that grows every week together with its players.",
+    watch:"Watch the 0.2 video",
+    dl_apk:"Download APK",apk_note:"Updates 0.1, your saves stay",dl_zip:"Download ZIP",zip_note:"Unzip and run the .exe",
+    soon:"soon",in_dev:"In development",ios_note:"We'll announce the test on the channel",
+    proto_dl:"Prototype: file links appear once hosting is chosen.",
+    new_label:"Version 0.2.0 · 17 October 2026",new_h:"In two weeks the game changed almost completely",
+    f1h:"A basement under your home",f1p:"Place a hatch, craft a drill and carve out your base cell by cell.",
+    f2h:"Honest gathering",f2p:"A tree sways, cracks and pays out only when it falls.",
+    f3h:"Crafting takes time",f3p:"The workbench works 5 to 10 seconds, up to three items in the queue.",
+    f4h:"Heavier combat",f4p:"No hitting or shooting on the run. Ammo has to be found.",
+    f5h:"Living hunger",f5p:"Run and you get hungry faster. Rest and it slows down.",
+    f6h:"A world of locations",f6p:"A world map, the Dense Forest and a Substation with a chained gate.",
+    f7h:"The mentor",f7p:"Newcomers are met at a campfire and taught to survive from the first branch.",
+    f8h:"For any phone",f8p:"30 or 60 FPS, automatic quality, big menu buttons.",
+    world_label:"World",world_h:"Above: night and the infected. Below: warmth.",
+    alt_base:"Cross-section of an underground base with a drill",alt_sub:"The Substation at night",alt_mentor:"The hero and the mentor at a campfire",
+    w1h:"Underground base",w1p:"Where the basement is heading. The game already has the hatch, the drill and the first cells.",
+    w2h:"The Substation",w2p:"A chained gate and the drill blueprint inside",
+    w3h:"The mentor",w3p:"The first one to meet you in this world",
+    dev_label:"Who makes the game",dev_h:"One developer. Every step on YouTube.",
+    dev_role:"YouTube · creator of Last Fibanachi Survival",
+    dev_p:"I was away from YouTube for four years. I came back with my own game and I build it alone. My videos show it as it is: what players broke, what I fixed and what comes next.",
+    st1b:"17K",st1:"views on the first video in 2 weeks",st2:"game versions in 15 days",
+    subscribe:"Subscribe to the channel",
+    ep2h:"New update: LFS 0.2",ep2p:"A basement, new gathering and combat you can't run through",
+    ep1h:"I came back after 4 years… and made my own game",ep1p:"How it all started. 17K views",
+    ep3h:"Charlie's Bunker",ep3p:"Next episode. Subscribe so you don't miss it",
+    pt_label:"Game partners",pt_h:"YouTubers and streamers who play first",pt_p:"Partners get new versions before everyone else and show them to their audience.",
+    role_dev:"Developer",sub_fib:"127K subscribers",sub_urb:"800K subscribers",st0b:"127K",st0:"channel subscribers",role_partner:"Partner",slot_h:"Your channel could be here",slot_p:"YouTube, Twitch, TikTok",
+    join_label:"Become a partner",join_h:"Get updates before everyone else",
+    perk1:"New versions before the public release",perk2:"Your channel in the partner list on this site",perk3:"A direct line to the developer",
+    step1:"1 · Apply",step2:"2 · Channel review",step3:"3 · You're in the partner list",
+    pf_channel:"Channel link",pf_platform:"Platform",pf_other:"Other",pf_audience:"Subscribers",
+    pf_contact:"Contact (Telegram or email)",pf_about:"What you plan to film",pf_about_ph:"A review, a playthrough, a co-op stream...",
+    pf_send:"Apply",pf_hint:"Prototype: the application isn't sent anywhere yet. The live site will accept applications.",
+    pf_need:"Add your channel link and a contact.",pf_ok:"Application checked. In this prototype it isn't sent; on the live site it will reach the developer.",
+    ver_label:"Version history",ver_h:"Every update",current:"Current",
+    v2a:"Basement: hatch, drill station, rock cells",v2b:"Gathering: resources only after the tree falls",v2c:"Workbench crafting 5–10 seconds, queue of three",
+    v2d:"No hitting or shooting on the run, ammo must be found",v2e:"Mentor, a world of locations, new icons and hero clothing",v2f:"30/60 FPS toggle and automatic graphics quality",
+    v1a:"First public version for Android and Windows",v1b:"Home, workbench, raids on the base, the Substation",v1c:"Two-player co-op over local network",
+    com_label:"Community",com_h:"Write, break, suggest",com_p:"The best player finds make it into the game. The author of the best one gets their name in the game world.",
+    lk_yt:"The 0.2 video",lk_tg:"Telegram channel",
+    faq_label:"FAQ",faq_h:"The short version",
+    q1:"How do I update from 0.1 without losing progress?",a1:"On Android, install the new APK over the old game. No need to uninstall, your save stays.",
+    q2:"I installed “LFS Player Preview 02”. What now?",a2:"That was a separate test build. Uninstall it and install the APK from this page. Its progress doesn't carry over.",
+    q3:"The game lags on my phone",a3:"Open the pause menu and pick 30 FPS and LOW quality. On weak phones 60 FPS may stutter.",
+    q4:"Where do I get the drill for the basement?",a4:"The blueprint is the Substation reward. The drill station is crafted at the advanced workbench, level 8 required.",
+    q5:"Will there be iOS and online co-op?",a5:"Yes. Two-player co-op already works over a local network, online is in progress. iOS will come via TestFlight.",
+    foot1:"Last Fibanachi Survival · made by Fibanachi",foot2:"Found a bug? Write on the Telegram channel."
+  };
+  var RU={};
+  document.querySelectorAll("[data-i18n]").forEach(function(el){RU[el.dataset.i18n]=el.textContent});
+  document.querySelectorAll("[data-i18n-alt]").forEach(function(el){RU[el.dataset.i18nAlt]=el.getAttribute("alt")});
+  document.querySelectorAll("[data-i18n-ph]").forEach(function(el){RU[el.dataset.i18nPh]=el.getAttribute("placeholder")});
+  RU.pf_need="Укажи ссылку на канал и контакт.";
+  RU.pf_ok="Заявка проверена. В прототипе она никуда не уходит, на сайте попадёт к разработчику.";
+  var cur="ru";
+  function t(k){var d=cur==="en"?EN:RU;return d[k]!=null?d[k]:RU[k]}
+  function apply(lang){
+    cur=lang;
+    document.documentElement.lang=lang;
+    document.querySelectorAll("[data-i18n]").forEach(function(el){var v=t(el.dataset.i18n);if(v!=null)el.textContent=v});
+    document.querySelectorAll("[data-i18n-alt]").forEach(function(el){el.setAttribute("alt",t(el.dataset.i18nAlt))});
+    document.querySelectorAll("[data-i18n-ph]").forEach(function(el){el.setAttribute("placeholder",t(el.dataset.i18nPh))});
+    document.querySelectorAll(".lang button").forEach(function(b){b.setAttribute("aria-pressed",String(b.dataset.lang===lang))});
+    try{localStorage.setItem("lfs_lang",lang)}catch(e){}
+  }
+  document.querySelectorAll(".lang button").forEach(function(b){b.addEventListener("click",function(){apply(b.dataset.lang)})});
+  var start="ru";
+  try{var s=localStorage.getItem("lfs_lang");if(s==="ru"||s==="en")start=s;else if(!/^ru|^uk|^be|^kk/i.test(navigator.language||"ru"))start="en"}catch(e){}
+  if(start!=="ru")apply(start);
+
+  var form=document.getElementById("partner-form"),msg=document.getElementById("pf-msg");
+  form.addEventListener("submit",function(e){
+    e.preventDefault();
+    var ch=form.channel.value.trim(),ct=form.contact.value.trim();
+    if(!ch||!ct){msg.className="form-msg";msg.textContent=t("pf_need");return}
+    msg.className="form-msg ok";msg.textContent=t("pf_ok");
+  });
+})();
+</script>
+</body>
+</html>
