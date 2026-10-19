@@ -9,7 +9,7 @@
 <title>Last Fibanachi Survival</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Manrope:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Roboto:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap">
 <style>
 /* Layout: cinematic night. Letterboxed full-bleed key art with grain and vignette, a floating download dock that
    overlaps the hero edge, then a calm editorial column. One accent: the amber light from the hatch.
@@ -231,24 +231,124 @@ footer .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:spac
 .form-msg.ok{color:#9fd6a8}
 @media (max-width:880px){.join{grid-template-columns:1fr}.join form{border-left:0;border-top:1px solid var(--line)}}
 @media (max-width:480px){.row2{grid-template-columns:1fr}}
+
+/* ===== Theme v2: rugged devblog look (dark charcoal, rust-red accent, condensed caps, square cards) ===== */
+:root{
+  --ink:#0f0f0f;--night:#171717;--panel:#212121;--panel-2:#2a2a2a;
+  --line:rgba(255,255,255,.08);--line-2:rgba(255,255,255,.16);
+  --frost:#f1efec;--fog:#a8a39d;--dim:#77726c;
+  --hatch:#e04b2c;--hatch-hi:#f2643f;--ember:#b33a20;
+  --display:"Oswald","Arial Narrow",Impact,sans-serif;
+  --body:"Roboto","Segoe UI",system-ui,sans-serif;
+}
+body{background:var(--night);font-size:16.5px}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.5;
+  background:radial-gradient(1200px 600px at 80% -10%,rgba(224,75,44,.08),transparent 60%),repeating-linear-gradient(0deg,rgba(255,255,255,.012) 0 2px,transparent 2px 4px)}
+main,footer,.topbar{position:relative;z-index:1}
+h1,h2,h3,.ver-num,.stat b,.who b,.plat-h h3,.shot figcaption b,.join-l h3,.pt .subs{font-family:var(--display);text-transform:uppercase;letter-spacing:.01em}
+h1{font-weight:700;line-height:.95;letter-spacing:0}
+h1 .glow{color:var(--hatch);text-shadow:none}
+h2{font-weight:700;font-size:clamp(30px,4.2vw,52px);line-height:1}
+.label{font-family:var(--display);font-weight:600;font-size:14px;letter-spacing:.14em;color:var(--hatch)}
+/* square, rugged surfaces */
+.dock-inner,.shot,.ver,.lk,.dev,.pt,.join,.field input,.field select,.field textarea,.btn,.submit{border-radius:2px}
+.dock-inner{box-shadow:0 30px 80px -30px rgba(0,0,0,.9)}
+.plat{background:rgba(26,26,26,.96)}
+.plat.lead{background:linear-gradient(160deg,rgba(224,75,44,.18),rgba(26,26,26,.97) 55%)}
+.btn,.submit,.yt{text-transform:uppercase;font-family:var(--display);font-weight:600;letter-spacing:.06em;font-size:16px}
+.btn-primary,.submit{background:var(--hatch);color:#fff;box-shadow:none}
+.btn-primary:hover,.submit:hover{background:var(--hatch-hi)}
+.yt{border-radius:2px}
+.ava{border-color:var(--hatch);box-shadow:0 0 0 4px rgba(224,75,44,.15)}
+.pill{border-radius:2px;font-family:var(--display);font-weight:600;letter-spacing:.1em}
+.ver.now{border-color:rgba(224,75,44,.45);background:linear-gradient(120deg,rgba(224,75,44,.10),var(--panel) 45%)}
+.dev{background:radial-gradient(90% 120% at 0% 0%,rgba(224,75,44,.14),transparent 60%),var(--panel)}
+.join{border-color:rgba(224,75,44,.35);background:radial-gradient(100% 140% at 100% 0%,rgba(224,75,44,.12),transparent 55%),var(--panel)}
+.perks li::before,.feat h3::before{background:var(--hatch);box-shadow:none}
+.field input:focus,.field select:focus,.field textarea:focus{box-shadow:0 0 0 3px rgba(224,75,44,.2)}
+.chip{border-radius:2px;text-transform:uppercase;font-family:var(--display);font-weight:600;letter-spacing:.06em}
+
+/* solid top bar */
+.topbar{position:sticky;top:0;z-index:20;background:rgba(15,15,15,.96);border-bottom:1px solid var(--line-2);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);padding-top:env(safe-area-inset-top,0px)}
+.topbar .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:64px}
+.mark{font-family:var(--display);font-weight:700;font-size:20px;letter-spacing:.04em;text-decoration:none;text-transform:uppercase;white-space:nowrap}
+.mark i{color:var(--hatch)}
+.topbar .nav{background:none;border:0;box-shadow:none;padding:0;gap:2px;backdrop-filter:none;-webkit-backdrop-filter:none;font-family:var(--display);font-weight:500;font-size:16px;text-transform:uppercase;letter-spacing:.05em;color:#d8d4cf}
+.topbar .nav a{border-radius:0;padding:8px 12px;text-shadow:none;border-bottom:2px solid transparent}
+.topbar .nav a:hover{background:none;color:#fff;border-bottom-color:var(--hatch)}
+.cta{display:inline-flex;align-items:center;min-height:40px;padding:0 16px;background:var(--hatch);color:#fff;text-decoration:none;font-family:var(--display);font-weight:600;font-size:15px;letter-spacing:.07em;text-transform:uppercase;border-radius:2px;white-space:nowrap}
+.cta:hover{background:var(--hatch-hi)}
+.lang{border-radius:2px;background:#1d1d1d;border-color:var(--line-2);box-shadow:none;backdrop-filter:none}
+.lang button{color:#e6e2dd}
+.lang button[aria-pressed="true"]{background:var(--hatch);color:#fff}
+.bar-r{gap:14px}
+.hero::before{background:radial-gradient(120% 90% at 50% 35%,transparent 40%,rgba(15,15,15,.75) 100%),linear-gradient(180deg,rgba(15,15,15,.35) 0%,transparent 25%,transparent 45%,rgba(23,23,23,.94) 86%,var(--night) 100%)}
+
+/* news / devblog */
+.filters{display:flex;flex-wrap:wrap;gap:6px;margin:-12px 0 26px}
+.filters button{font:600 14px/1 var(--display);letter-spacing:.08em;text-transform:uppercase;color:var(--fog);background:var(--panel);border:1px solid var(--line);padding:11px 16px;min-height:40px;border-radius:2px;cursor:pointer}
+.filters button:hover{color:#fff;border-color:var(--line-2)}
+.filters button[aria-pressed="true"]{color:#fff;background:var(--hatch);border-color:var(--hatch)}
+.posts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.post{background:var(--panel);border:1px solid var(--line);display:flex;flex-direction:column;min-width:0;transition:border-color .15s ease,transform .15s ease}
+.post:hover{border-color:rgba(224,75,44,.5);transform:translateY(-2px)}
+.post .thumb{position:relative;aspect-ratio:16/9;overflow:hidden;background:#111}
+.post .thumb img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+.post:hover .thumb img{transform:scale(1.05)}
+.post .thumb.ava-thumb{display:grid;place-items:center;background:radial-gradient(circle at 50% 45%,#3a2a24,#141414 70%)}
+.post .thumb.ava-thumb img{width:42%;height:auto;aspect-ratio:1;border-radius:50%;border:3px solid var(--hatch)}
+.post .body{padding:18px 20px 20px;display:grid;gap:10px;align-content:start;flex:1}
+.meta{display:flex;flex-wrap:wrap;align-items:center;gap:10px;font-family:var(--display);font-weight:500;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--fog)}
+.tag{color:#fff;background:var(--hatch);padding:3px 8px;border-radius:2px;font-weight:600}
+.tag.t-dev{background:#3a3a3a}
+.tag.t-com{background:#2f5a46}
+.post h3{margin:0;font-weight:700;font-size:24px;line-height:1.05}
+.post p{margin:0;color:#c9c4be;font-size:15.5px}
+.post details{border:0;padding:0;margin-top:auto}
+.post summary{font-family:var(--display);font-weight:600;font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:var(--hatch);justify-content:flex-start;gap:8px}
+.post summary::after{content:"→";color:var(--hatch)}
+.post details[open] summary::after{transform:rotate(90deg)}
+.post details p{margin-top:12px;color:#c9c4be;max-width:none}
+.post details ul{margin:10px 0 0;padding-left:18px;color:#c9c4be;display:grid;gap:5px;font-size:15px}
+.post.feature{grid-column:span 3;display:grid;grid-template-columns:1.35fr 1fr}
+.post.feature .thumb{aspect-ratio:auto;min-height:340px}
+.post.feature h3{font-size:clamp(28px,3.4vw,42px)}
+.post.feature .body{padding:clamp(22px,3vw,36px);gap:14px}
+@media (max-width:980px){.posts{grid-template-columns:repeat(2,minmax(0,1fr))}.post.feature{grid-column:span 2}}
+@media (max-width:640px){.posts{grid-template-columns:1fr}.post.feature{grid-column:auto;grid-template-columns:1fr}.post.feature .thumb{min-height:0;aspect-ratio:16/9}}
+@media (max-width:760px){.topbar .nav{display:none}.mark{font-size:17px}}
+@media (max-width:420px){.cta{display:none}}
+
+/* footer v2 */
+footer{background:#0f0f0f;border-top:1px solid var(--line-2)}
+.foot{display:grid;gap:22px;padding-block:40px calc(32px + env(safe-area-inset-bottom,0px))}
+.foot-top{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px}
+.foot-links{display:flex;flex-wrap:wrap;gap:6px 22px;font-family:var(--display);font-weight:500;font-size:15px;letter-spacing:.06em;text-transform:uppercase}
+.foot-links a{text-decoration:none;color:#d8d4cf}
+.foot-links a:hover{color:var(--hatch)}
+.social{display:flex;gap:10px}
+.social a{display:grid;place-items:center;width:42px;height:42px;border:1px solid var(--line-2);border-radius:2px;color:#d8d4cf;text-decoration:none;font:600 13px var(--display);letter-spacing:.04em}
+.social a:hover{border-color:var(--hatch);color:#fff}
+.foot-bottom{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;font-size:13.5px;color:var(--dim);border-top:1px solid var(--line);padding-top:18px}
 </style>
 </head>
 <body>
-<header class="hero">
-  <div class="bar">
-    <div class="wrap">
-      <a class="mark" href="#top">LAST FIBANACHI <i>SURVIVAL</i></a>
-      <div class="bar-r">
-        <nav class="nav" aria-label="Menu">
-          <a href="#new" data-i18n="nav_new">Что нового</a><a href="#world" data-i18n="nav_world">Мир</a><a href="#partners" data-i18n="nav_partners">Партнёры</a><a href="#faq" data-i18n="nav_faq">Вопросы</a>
-        </nav>
-        <div class="lang" role="group" aria-label="Language">
-          <button type="button" id="lang-ru" data-lang="ru" aria-pressed="true">RU</button>
-          <button type="button" id="lang-en" data-lang="en" aria-pressed="false">EN</button>
-        </div>
+<div class="topbar">
+  <div class="wrap">
+    <a class="mark" href="#top">LAST FIBANACHI <i>SURVIVAL</i></a>
+    <div class="bar-r">
+      <nav class="nav" aria-label="Menu">
+        <a href="#news" data-i18n="nav_news">Новости</a><a href="#new" data-i18n="nav_new">Что нового</a><a href="#world" data-i18n="nav_world">Мир</a><a href="#partners" data-i18n="nav_partners">Партнёры</a><a href="#faq" data-i18n="nav_faq">Вопросы</a>
+      </nav>
+      <div class="lang" role="group" aria-label="Language">
+        <button type="button" id="lang-ru" data-lang="ru" aria-pressed="true">RU</button>
+        <button type="button" id="lang-en" data-lang="en" aria-pressed="false">EN</button>
       </div>
+      <a class="cta" href="#download" data-i18n="cta_dl">Скачать</a>
     </div>
   </div>
+</div>
+<header class="hero">
   <img class="hero-img" id="top" src="img/hero.jpg" data-i18n-alt="alt_hero" alt="Выживший открывает светящийся люк, рядом наставник, позади Подстанция и заражённые">
   <div class="hero-copy">
     <div class="wrap">
@@ -281,6 +381,106 @@ footer .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:spac
     </div>
     <p class="dock-note" data-i18n="proto_dl">Прототип: ссылки на файлы появятся после выбора хостинга.</p>
   </div>
+
+  <section id="news">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="label" data-i18n="news_label">Новости и девблог</div>
+        <h2 data-i18n="news_h">Что происходит с игрой</h2>
+      </div>
+      <div class="filters" role="group" aria-label="Filter">
+        <button type="button" data-f="all" aria-pressed="true" data-i18n="f_all">Все</button>
+        <button type="button" data-f="upd" aria-pressed="false" data-i18n="f_upd">Обновления</button>
+        <button type="button" data-f="dev" aria-pressed="false" data-i18n="f_dev">Девблог</button>
+        <button type="button" data-f="com" aria-pressed="false" data-i18n="f_com">Сообщество</button>
+      </div>
+      <div class="posts">
+        <article class="post feature" data-cat="dev">
+          <div class="thumb"><img src="img/substation.jpg" alt="" loading="lazy" style="object-position:50% 75%"></div>
+          <div class="body">
+            <div class="meta"><span class="tag t-dev" data-i18n="t_dev">Девблог</span><span>20.10.2026</span></div>
+            <h3 data-i18n="n1h">Бункер Чарлика</h3>
+            <p data-i18n="n1p">Под Подстанцией есть люк. На нём цепь. Кто-то очень не хотел, чтобы его открывали.</p>
+            <details><summary data-i18n="more">Читать</summary>
+              <p data-i18n="n1a">Этот кто-то Чарли. Он сам запечатал бункер вместе со всеми, кто был внутри. А потом пошёл газ. Внутри коридор с кислотой с потолка, зелёный туман, где без противогаза не выжить, тёмный зал, где гаснет свет, Плеваки и в самом конце Обвал у рубильника. Дёрнул рубильник, и у тебя 40 секунд на побег.</p>
+              <p data-i18n="n1b">Зачем туда лезть? За жетонами. За них терминал наверху выдаёт ящик с зарядами для бура, то есть новые клетки подвала. Бункер открывается раз в сутки. Сейчас карта и механики готовы и тестируются, дальше графика и тесты на телефонах.</p>
+            </details>
+          </div>
+        </article>
+        <article class="post" data-cat="upd">
+          <div class="thumb"><img src="img/hero.jpg" alt="" loading="lazy"></div>
+          <div class="body">
+            <div class="meta"><span class="tag" data-i18n="t_upd">Обновление</span><span>19.10.2026</span></div>
+            <h3 data-i18n="n2h">0.2.1 в тестах</h3>
+            <p data-i18n="n2p">Стройка без багов, сортировка сундуков и новое вступление. Многое пришло из ваших сообщений.</p>
+            <details><summary data-i18n="more">Читать</summary>
+              <ul>
+                <li data-i18n="v3a">Стройка: предметы нельзя ставить друг на друга, клетка выбирается тапом, режим стройки закрывается после установки предмета</li>
+                <li data-i18n="v3b">Сундуки: «Сортировать» и «Сложить похожие», при удержании вещи разложатся по всем сундукам рядом, включая подвал</li>
+                <li data-i18n="v3c">Стик больше не срывается в бег, когда крадёшься</li>
+                <li data-i18n="v3d">Ягоды собираются в 2–3 раза быстрее</li>
+                <li data-i18n="v3g">Новое вступление: комикс, ввод имени героя, новый титульный экран, «Продолжить / Начать заново»</li>
+              </ul>
+            </details>
+          </div>
+        </article>
+        <article class="post" data-cat="dev">
+          <div class="thumb"><img src="img/mentor.jpg" alt="" loading="lazy"></div>
+          <div class="body">
+            <div class="meta"><span class="tag t-dev" data-i18n="t_dev">Девблог</span><span>19.10.2026</span></div>
+            <h3 data-i18n="n3h">Выживание, а не спидран</h3>
+            <p data-i18n="n3p">Вы писали, что игра проходится слишком быстро. Согласен.</p>
+            <details><summary data-i18n="more">Читать</summary>
+              <p data-i18n="n3a">Делаем станции, которые работают в реальном времени, даже когда игра закрыта: готовка, плавка, бурение. Поставил плавиться, ушёл на вылазку, вернулся. Цифры ещё подбираем, расскажем, когда будет готово.</p>
+            </details>
+          </div>
+        </article>
+        <article class="post" data-cat="upd">
+          <div class="thumb"><img src="img/basement.jpg" alt="" loading="lazy"></div>
+          <div class="body">
+            <div class="meta"><span class="tag" data-i18n="t_upd">Обновление</span><span>17.10.2026</span></div>
+            <h3 data-i18n="n4h">Вышла 0.2.0: подвал под домом</h3>
+            <p data-i18n="n4p">Люк, бур и база под землёй. Плюс честная добыча, крафт по времени и выбор 30/60 FPS.</p>
+            <details><summary data-i18n="more">Читать</summary>
+              <ul>
+                <li data-i18n="v2a">Подвал: люк, буровая установка, клетки породы</li>
+                <li data-i18n="v2b">Добыча: ресурс только после падения дерева</li>
+                <li data-i18n="v2c">Крафт на верстаке 5–10 секунд, очередь на три предмета</li>
+                <li data-i18n="v2f">Переключатель 30/60 FPS и автоматическое качество графики</li>
+              </ul>
+            </details>
+          </div>
+        </article>
+        <article class="post" data-cat="com">
+          <div class="thumb ava-thumb"><img src="img/urban.jpg" alt="Mr. Urban" loading="lazy"></div>
+          <div class="body">
+            <div class="meta"><span class="tag t-com" data-i18n="t_com">Сообщество</span></div>
+            <h3 data-i18n="n5h">Mr. Urban с нами</h3>
+            <p data-i18n="n5p">У LFS первый большой партнёр: 800 тыс. подписчиков. Скоро откроем партнёрскую программу для ютуберов и стримеров.</p>
+            <details><summary data-i18n="more">Читать</summary>
+              <p data-i18n="n5a">Партнёры получают новые версии раньше всех. Снимаешь игры? Заполни заявку ниже на этой странице.</p>
+            </details>
+          </div>
+        </article>
+        <article class="post" data-cat="com">
+          <div class="thumb"><img src="img/basement.jpg" alt="" loading="lazy" style="object-position:50% 30%"></div>
+          <div class="body">
+            <div class="meta"><span class="tag t-com" data-i18n="t_com">Сообщество</span><span>18.10.2026</span></div>
+            <h3 data-i18n="n7h">Запустили fibanachi.com</h3>
+            <p data-i18n="n7p">Новости, история версий, партнёры и скачивание в одном месте. На русском и английском.</p>
+          </div>
+        </article>
+        <article class="post" data-cat="upd">
+          <div class="thumb"><img src="img/hero.jpg" alt="" loading="lazy" style="object-position:20% 50%"></div>
+          <div class="body">
+            <div class="meta"><span class="tag" data-i18n="t_upd">Обновление</span><span>02.10.2026</span></div>
+            <h3 data-i18n="n6h">0.1.0: первая версия</h3>
+            <p data-i18n="n6p">Первая публичная версия для Android и Windows: дом, верстак, рейды на базу и Подстанция.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
 
   <section id="new">
     <div class="wrap">
@@ -465,15 +665,35 @@ footer .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:spac
 </main>
 
 <footer>
-  <div class="wrap">
-    <span data-i18n="foot1">Last Fibanachi Survival · делает Fibanachi</span>
-    <span data-i18n="foot2">Нашёл баг? Напиши в Telegram-канале.</span>
+  <div class="wrap foot">
+    <div class="foot-top">
+      <a class="mark" href="#top">LAST FIBANACHI <i>SURVIVAL</i></a>
+      <div class="social">
+        <a href="https://www.youtube.com/watch?v=fYLGmgd4PPw" target="_blank" rel="noopener" aria-label="YouTube">YT</a>
+        <a href="https://t.me/fibsail" target="_blank" rel="noopener" aria-label="Telegram">TG</a>
+        <a href="https://discord.gg/wJKxjku5c4" target="_blank" rel="noopener" aria-label="Discord">DC</a>
+      </div>
+    </div>
+    <nav class="foot-links" aria-label="Footer">
+      <a href="#news" data-i18n="nav_news">Новости</a><a href="#download" data-i18n="cta_dl">Скачать</a><a href="#versions" data-i18n="ver_label">История версий</a><a href="#partners" data-i18n="nav_partners">Партнёры</a><a href="#join" data-i18n="join_label">Стать партнёром</a><a href="#faq" data-i18n="nav_faq">Вопросы</a>
+    </nav>
+    <div class="foot-bottom">
+      <span data-i18n="foot1">Last Fibanachi Survival · делает Fibanachi</span>
+      <span data-i18n="foot2">Нашёл баг? Напиши в Telegram-канале.</span>
+    </div>
   </div>
 </footer>
 
 <script>
 (function(){
   var EN={
+    nav_news:"News",cta_dl:"Download",news_label:"News & devblog",news_h:"What's happening with the game",f_all:"All",f_upd:"Updates",f_dev:"Devblog",f_com:"Community",t_dev:"Devblog",t_upd:"Update",t_com:"Community",more:"Read more",
+    n1h:"Charlie's Bunker",n1p:"There is a hatch under the Substation. A chain on it. Someone really didn't want it opened.",n1a:"That someone is Charlie. He sealed the bunker with everyone inside. Then the gas came. Inside: a corridor dripping acid, green fog you won't survive without a gas mask, a dark hall where the lights die, Spitters, and at the very end Obval guarding the switch. Pull it and you have 40 seconds to escape.",n1b:"Why go down there? Tokens. The terminal above trades them for a crate of drill charges, which means new basement cells. The bunker opens once per day. The map and mechanics are done and in testing; next come art and phone tests.",
+    n2h:"0.2.1 in testing",n2p:"Bug-free building, chest sorting and a new intro. A lot of it came from your messages.",
+    n3h:"Survival, not a speedrun",n3p:"You said the game is beaten too fast. Agreed.",n3a:"We're making stations that run in real time, even when the game is closed: cooking, smelting, drilling. Start a smelt, go on a run, come back. The numbers are still being tuned; we'll share them when they're ready.",
+    n4h:"0.2.0 is out: a basement under your home",n4p:"A hatch, a drill and a base underground. Plus honest gathering, timed crafting and a 30/60 FPS choice.",
+    n5h:"Mr. Urban joins us",n5p:"LFS has its first big partner: 800K subscribers. A partner program for YouTubers and streamers opens soon.",n5a:"Partners get new versions before everyone else. Making game videos? Fill in the application further down this page.",
+    n7h:"fibanachi.com is live",n7p:"News, version history, partners and downloads in one place. In Russian and English.",n6h:"0.1.0: the first version",n6p:"The first public version for Android and Windows: home, workbench, base raids and the Substation.",
     nav_new:"What's new",nav_world:"World",nav_partners:"Partners",nav_faq:"FAQ",
     alt_hero:"A survivor opens a glowing hatch, the mentor beside him, the Substation and the infected behind",
     h1_a:"Survive above.",h1_b:"Build below.",
@@ -550,6 +770,11 @@ footer .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:spac
   try{var s=localStorage.getItem("lfs_lang");if(s==="ru"||s==="en")start=s;else if(!/^ru|^uk|^be|^kk/i.test(navigator.language||"ru"))start="en"}catch(e){}
   if(start!=="ru")apply(start);
 
+
+  document.querySelectorAll(".filters button").forEach(function(b){b.addEventListener("click",function(){
+    var f=b.dataset.f;document.querySelectorAll(".filters button").forEach(function(x){x.setAttribute("aria-pressed",String(x===b))});
+    document.querySelectorAll(".post").forEach(function(p){p.hidden=!(f==="all"||p.dataset.cat===f)});
+  })});
   var form=document.getElementById("partner-form"),msg=document.getElementById("pf-msg");
   form.addEventListener("submit",function(e){
     e.preventDefault();
