@@ -117,6 +117,10 @@ h2{font-family:var(--display);font-weight:700;font-size:clamp(26px,3.6vw,44px);l
 .versions{display:grid;gap:14px}
 .ver{display:grid;grid-template-columns:150px 1fr;gap:24px;padding:24px;border:1px solid var(--line);border-radius:14px;background:var(--panel);min-width:0}
 .ver.now{border-color:rgba(243,161,58,.35);background:linear-gradient(120deg,rgba(243,161,58,.08),var(--panel) 45%)}
+.ver.next{border-style:dashed;border-color:rgba(120,190,255,.35);background:linear-gradient(120deg,rgba(120,190,255,.07),var(--panel) 45%)}
+.ver.next li::before{background:#78beff}
+.pill.soon{color:#9fd0ff;border-color:rgba(120,190,255,.45)}
+.ver-note{margin-top:12px;color:var(--fog);font-size:14px}
 .ver-num{font-family:var(--display);font-weight:700;font-size:30px;line-height:1}
 .ver-date{font-family:var(--mono);font-size:12px;color:var(--fog);margin-top:8px}
 .pill{display:inline-block;margin-top:10px;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--hatch);border:1px solid rgba(243,161,58,.4);border-radius:999px;padding:3px 9px}
@@ -384,6 +388,29 @@ footer .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:spac
         <h2 data-i18n="ver_h">Каждое обновление</h2>
       </div>
       <div class="versions">
+        <article class="ver next">
+          <div><div class="ver-num">0.2.1</div><div class="ver-date" data-i18n="v3date">скоро</div><span class="pill soon" data-i18n="testing">В тестах</span></div>
+          <div>
+          <ul>
+            <li data-i18n="v3a">Стройка: предметы нельзя ставить друг на друга, клетка выбирается тапом, режим стройки закрывается после установки предмета</li>
+            <li data-i18n="v3b">Сундуки: «Сортировать» и «Сложить похожие», при удержании вещи разложатся по всем сундукам рядом, включая подвал</li>
+            <li data-i18n="v3c">Стик больше не срывается в бег, когда крадёшься</li>
+            <li data-i18n="v3d">Ягоды собираются в 2–3 раза быстрее</li>
+            <li data-i18n="v3e">Карточка задания показывает, чего именно не хватает</li>
+            <li data-i18n="v3f">Верстак плотника: 5 дерева → 15 досок за раз</li>
+            <li data-i18n="v3g">Новое вступление: комикс, ввод имени героя, новый титульный экран, «Продолжить / Начать заново»</li>
+            <li data-i18n="v3h">Предупреждение, если 60 FPS тяжело для телефона</li>
+          </ul>
+          <p class="ver-note" data-i18n="v3note">Дату не называем: выйдет, когда пройдёт все тесты.</p>
+          </div>
+        </article>
+        <article class="ver next">
+          <div><div class="ver-num" data-i18n="wipnum">Дальше</div><span class="pill soon" data-i18n="wip">В разработке</span></div>
+          <ul>
+            <li data-i18n="w1">Станции в реальном времени: готовка, плавка и бурение идут, даже когда игра закрыта. Поставил плавиться, ушёл на вылазку, вернулся</li>
+            <li data-i18n="w2">Выживание станет дольше и тяжелее: это не спидран на один вечер</li>
+          </ul>
+        </article>
         <article class="ver now">
           <div><div class="ver-num">0.2.0</div><div class="ver-date">17.10.2026</div><span class="pill" data-i18n="current">Текущая</span></div>
           <ul>
@@ -486,6 +513,7 @@ footer .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:spac
     pf_send:"Apply",pf_hint:"Prototype: the application isn't sent anywhere yet. The live site will accept applications.",
     pf_need:"Add your channel link and a contact.",pf_ok:"Application checked. In this prototype it isn't sent; on the live site it will reach the developer.",
     ver_label:"Version history",ver_h:"Every update",current:"Current",
+    v3date:"soon",testing:"In testing",v3a:"Building: items can't be stacked on each other, pick a cell with a tap, build mode closes after placing an item",v3b:"Chests: \"Sort\" and \"Store similar\"; hold it to spread items into every nearby chest, basement included",v3c:"The stick no longer flips you into a run while sneaking",v3d:"Berries are gathered 2–3× faster",v3e:"The task card shows exactly what is missing",v3f:"Carpenter bench: 5 wood → 15 planks in one batch",v3g:"New intro: comic, hero name entry, new title screen, \"Continue / New game\"",v3h:"A warning when 60 FPS is too heavy for the phone",v3note:"No date yet: it ships when every test passes.",wipnum:"Next",wip:"In development",w1:"Real-time stations: cooking, smelting and drilling keep running even when the game is closed. Start a smelt, go on a run, come back",w2:"Survival gets longer and harder: not a one-evening speedrun",
     v2a:"Basement: hatch, drill station, rock cells",v2b:"Gathering: resources only after the tree falls",v2c:"Workbench crafting 5–10 seconds, queue of three",
     v2d:"No hitting or shooting on the run, ammo must be found",v2e:"Mentor, a world of locations, new icons and hero clothing",v2f:"30/60 FPS toggle and automatic graphics quality",
     v1a:"First public version for Android and Windows",v1b:"Home, workbench, raids on the base, the Substation",v1c:"Two-player co-op over local network",
