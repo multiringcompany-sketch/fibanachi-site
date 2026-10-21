@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Last Fibanachi Survival 0.2.1: полный список изменений / full changelog.">
+<meta name="theme-color" content="#14110f">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<title>0.2.1 Changelog | Last Fibanachi Survival</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Sans+Extra+Condensed:wght@500;700;800;900&family=Fira+Sans:wght@400;500;600&display=swap">
+<style>
+:root{--soot:#14110f;--concrete:#1d1a17;--slab:#26221e;--seam:rgba(236,226,212,.09);--seam-2:rgba(236,226,212,.18);--bone:#efe8dc;--ash:#a39a8e;--dust:#766e64;--rust:#c9472b;--rust-hi:#e2593a;--gas:#8fae5a;--display:"Fira Sans Extra Condensed","Arial Narrow",sans-serif;--body:"Fira Sans","Segoe UI",system-ui,sans-serif;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--soot);color:var(--bone);font:400 17px/1.6 var(--body);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.bar{position:sticky;top:0;z-index:5;background:rgba(20,17,15,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--seam)}
+.bar .in{max-width:860px;margin:0 auto;padding:0 16px;height:60px;display:flex;align-items:center;gap:16px}
+.back{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font:700 17px/1 var(--display);letter-spacing:.04em;text-transform:uppercase}
+.back:hover{color:var(--rust-hi)}
+.back img{width:26px;height:26px}
+.lang{margin-left:auto;display:inline-flex;border:1px solid var(--seam-2)}
+.lang button{font:700 14px/1 var(--display);letter-spacing:.06em;color:#d9d1c5;background:transparent;border:0;padding:0 11px;min-height:36px;cursor:pointer}
+.lang button[aria-pressed="true"]{background:var(--bone);color:var(--soot)}
+main{max-width:860px;margin:0 auto;padding:48px 16px 80px}
+.kicker{font:700 15px/1 var(--display);letter-spacing:.12em;text-transform:uppercase;color:var(--rust-hi)}
+h1{font:900 clamp(44px,9vw,84px)/.92 var(--display);text-transform:uppercase;margin:12px 0 18px;letter-spacing:-.01em}
+.meta{color:var(--ash);font-size:15px;display:flex;flex-wrap:wrap;gap:6px 18px;margin-bottom:28px}
+.meta b{color:var(--bone);font-weight:600}
+.dl{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 40px}
+.btn{display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:0 20px;font:800 18px/1 var(--display);letter-spacing:.05em;text-transform:uppercase;text-decoration:none;border:1px solid var(--seam-2)}
+.btn.rust{background:var(--rust);border-color:var(--rust);color:#fff}
+.btn:hover{border-color:var(--rust-hi)}
+.btn small{font:500 13px/1 var(--body);opacity:.8;text-transform:none;letter-spacing:0}
+h2{font:800 30px/1 var(--display);text-transform:uppercase;letter-spacing:.02em;margin:40px 0 14px;padding-top:18px;border-top:1px solid var(--seam)}
+h2.known{color:var(--ash)}
+ul{margin:0;padding:0;list-style:none;display:grid;gap:12px}
+li{position:relative;padding-left:22px;color:#d6cdc0}
+li::before{content:"";position:absolute;left:0;top:.62em;width:9px;height:9px;background:var(--rust)}
+h2.known + ul li::before{background:var(--dust)}
+li b{color:var(--bone);font-weight:600}
+code{font:500 .9em/1 ui-monospace,Consolas,monospace;background:var(--slab);padding:2px 5px}
+.foot{margin-top:56px;color:var(--dust);font-size:14px;border-top:1px solid var(--seam);padding-top:18px}
+[data-l]{display:none}
+html[lang="ru"] [data-l="ru"],html[lang="en"] [data-l="en"]{display:block}
+html[lang="ru"] .meta[data-l="ru"],html[lang="en"] .meta[data-l="en"]{display:flex}
+html[lang="ru"] span[data-l="ru"],html[lang="en"] span[data-l="en"]{display:inline}
+@media (max-width:520px){body{font-size:16px}h2{font-size:26px}}
+</style>
+</head>
+<body>
+<header class="bar"><div class="in">
+  <a class="back" href="./#versions"><img src="favicon-32.png" alt=""><span data-l="ru">← На сайт</span><span data-l="en">← Back to site</span></a>
+  <div class="lang" role="group" aria-label="Language"><button type="button" data-set="ru" aria-pressed="true">RU</button><button type="button" data-set="en" aria-pressed="false">EN</button></div>
+</div></header>
+<main>
+  <div class="kicker"><span data-l="ru">Обновление · 21.10.2026</span><span data-l="en">Update · 21 Oct 2026</span></div>
+  <h1>Last Fibanachi Survival 0.2.1</h1>
+  <div class="meta" data-l="ru"><span><b>Android</b> ставится поверх 0.1 и 0.2.0, сохранения остаются</span><span><b>Windows</b> прогресс 0.2.0 переносится сам</span></div>
+  <div class="meta" data-l="en"><span><b>Android</b> installs over 0.1 and 0.2.0, saves are kept</span><span><b>Windows</b> 0.2.0 progress carries over</span></div>
+  <div class="dl">
+    <a class="btn rust" href="https://github.com/multiringcompany-sketch/fibanachi-site/releases/latest/download/LastFibanachiSurvival_Android.apk" download>APK <small>158 MB</small></a>
+    <a class="btn" href="https://github.com/multiringcompany-sketch/fibanachi-site/releases/latest/download/LastFibanachiSurvival_Windows.zip" download>Windows ZIP <small>127 MB</small></a>
+  </div>
+  <section data-l="ru" lang="ru">
+<h2>Новое</h2>
+<ul>
+<li><b>Первый запуск:</b> короткое комикс-вступление (4 кадра, можно пропустить), затем ввод имени, затем пролог. Если есть сохранение из прошлой версии — один раз выбираешь: продолжить его или начать заново (начать заново спрашивает дважды).</li>
+<li><b>Новый титульный экран.</b></li>
+<li><b>Сундуки: СОРТИРОВКА и «ПОЛОЖИТЬ ПОХОЖЕЕ».</b> Сортировка содержимого одним касанием; «Положить похожее» перекладывает из рюкзака то, что уже лежит в сундуке. Удерживай кнопку — и вещи разложатся по всем сундукам в радиусе 20 м.</li>
+<li><b>Графика: предупреждение о 60 FPS.</b> На пресете LOW с выбранными 60 FPS в меню паузы появляется строка «60 FPS может тормозить на слабом устройстве».</li>
+</ul>
+<h2>Исправлено</h2>
+<ul>
+<li><b>Ввод имени и кода кооператива:</b> поле имени и поле кода для подключения к кооперативу снова принимают касание и ввод (раньше не реагировали).</li>
+<li><b>Подстанция:</b> тревога корректно включается снова; шкафчики открываются после окончания тревоги.</li>
+<li><b>Генератор / продвинутый верстак:</b> больше нет «не хватает ресурсов», когда всё есть; карточки постройки называют недостающие материалы, а не только «+N ещё», и снова помещаются после смены размера экрана.</li>
+<li><b>Подвал:</b> лестница снова видна после загрузки сохранения.</li>
+<li><b>Чертёж и модуль генератора (Подстанция):</b> больше не исчезают с земли; чертёж бура засчитывается, только когда он в рюкзаке, — полный рюкзак его больше не теряет. Если в 0.2 чертёж бура уже пропал, после обновления ты получишь его один раз.</li>
+<li><b>Обучение:</b> если всё дерево потрачено и деревьев у Дома не осталось, ты получишь дерево, нужное для постройки; подсказка «Поговорить» у наставника больше не появляется, когда ничего не делает.</li>
+<li><b>Рюкзак после смерти:</b> если рюкзак перенесён в домашний лагерь, появляется сообщение «Твой рюкзак перенесён в домашний лагерь» и метка рюкзака на карте мира.</li>
+<li><b>Строительство:</b> постройки ставятся и разбираются касанием без наложения друг на друга (включая костёр).</li>
+<li><b>Скрытность:</b> если чуть пересильно отвести стик, герой больше не срывается на бег и не теряет скрытность; осознанное полное отведение с удержанием 0,3 с по-прежнему включает бег.</li>
+<li><b>Ягоды:</b> сбор начинается быстрее, рука дотягивается до листьев.</li>
+<li><b>Карточка задач:</b> сначала невыполненные задачи, остальное сворачивается в «+N ещё».</li>
+<li><b>Верстак плотника:</b> доски партией по полной норме (5 дерева → 15 досок).</li>
+<li><b>Windows:</b> игра везде называется «Last Fibanachi Survival»; прогресс 0.2.0 переносится автоматически (только копирование, старые файлы не трогаются).</li>
+</ul>
+<h2 class="known">Известные проблемы</h2>
+<ul>
+<li>После смерти рюкзак всё ещё может оказаться в домашнем лагере (теперь есть сообщение и метка на карте); полное исправление — в 0.2.2.</li>
+<li>Кнопка ремонта не показывает стоимость.</li>
+<li>Некоторые предметы станков создаются мгновенно из общего меню крафта.</li>
+<li>Сундуки на Подстанции могут быть пустыми после загрузки сохранения посреди игры.</li>
+<li>Android: если скрыть клавиатуру кнопкой «Назад», введённое имя может сброситься; нажимай DONE сразу.</li>
+</ul>
+  </section>
+  <section data-l="en" lang="en">
+<h2>New</h2>
+<ul>
+<li><b>First launch:</b> a short comic intro (4 panels, can be skipped), then you enter your name, then the prologue starts. Players with a save from an earlier version choose once: continue the old save or start over (starting over asks twice).</li>
+<li><b>New title screen</b> art.</li>
+<li><b>Chests: SORT and STORE SIMILAR.</b> Sort a chest's contents with one tap; STORE SIMILAR moves the items the chest already holds from your bag into it. Hold STORE SIMILAR to store into every chest within 20 m.</li>
+<li><b>Graphics: 60 FPS warning.</b> On the LOW preset with 60 FPS chosen, the pause menu shows "60 FPS may stutter on a weak device".</li>
+</ul>
+<h2>Fixed</h2>
+<ul>
+<li><b>Name entry and the co-op code:</b> the name field and the CO-OP join-code field can be tapped and typed into (they did not take input before).</li>
+<li><b>Substation:</b> the alarm re-arms correctly; the lockers open again after the alarm ends.</li>
+<li><b>Generator / advanced workbench:</b> no more "not enough resources" while you have everything; the build cards name the missing materials instead of only "+N more", and they fit again after the screen size changes.</li>
+<li><b>Basement:</b> the ladder is visible again after loading a save.</li>
+<li><b>Blueprint and generator module (Substation):</b> they no longer disappear from the ground; the drill blueprint counts as received only once it is in your bag, so a full bag no longer loses it. If your drill blueprint was already lost in 0.2, you receive it once after updating.</li>
+<li><b>Tutorial:</b> if you spent all the wood and no tree is left at Home, you get the wood you need to finish building; the mentor's "Talk" prompt no longer appears when it does nothing.</li>
+<li><b>Death bag:</b> when your bag is moved to the Home camp you now get a message ("Your bag was moved to the Home camp") and a World Map marker at the bag.</li>
+<li><b>Building:</b> pieces are placed and demolished by tap without stacking (campfire included).</li>
+<li><b>Sneaking:</b> pushing the stick a little too far no longer makes you run and breaks stealth; a deliberate full pull held for 0.3 s still runs.</li>
+<li><b>Berries:</b> picking starts sooner and the hand reaches the leaves.</li>
+<li><b>Task card:</b> unfinished tasks come first, the rest fold into "+N more".</li>
+<li><b>Carpenter bench:</b> planks in a batch at the full rate (5 wood → 15 planks).</li>
+<li><b>Windows:</b> the game is now "Last Fibanachi Survival" everywhere; 0.2.0 progress carries over automatically (copy only, the old files are left untouched).</li>
+</ul>
+<h2 class="known">Known issues</h2>
+<ul>
+<li>After a death, your bag can still be moved to the Home camp (you now get a message and a map marker); the full fix comes in 0.2.2.</li>
+<li>The repair button does not show its cost.</li>
+<li>Some station items craft instantly from the general craft menu.</li>
+<li>Substation chests can be empty after loading a save mid-session.</li>
+<li>Android: hiding the keyboard with Back may reset the name you typed; tap DONE directly.</li>
+</ul>
+  </section>
+  <p class="foot"><span data-l="ru">SHA-256 файлов и все версии: на главной странице, раздел «Скачать».</span><span data-l="en">File SHA-256 and all versions: on the main page, Download section.</span></p>
+</main>
+<script>
+(function(){
+  function apply(l){document.documentElement.lang=l;document.querySelectorAll(".lang button").forEach(function(b){b.setAttribute("aria-pressed",String(b.dataset.set===l))});try{localStorage.setItem("lfs_lang",l)}catch(e){}}
+  document.querySelectorAll(".lang button").forEach(function(b){b.addEventListener("click",function(){apply(b.dataset.set)})});
+  var s="ru";try{var v=localStorage.getItem("lfs_lang");if(v==="ru"||v==="en")s=v;else if(!/^ru|^uk|^be|^kk/i.test(navigator.language||"ru"))s="en"}catch(e){}
+  apply(s);
+})();
+</script>
+</body>
+</html>

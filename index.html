@@ -289,6 +289,7 @@ a.pt:hover::after{border-color:var(--rust)}
 .v li{position:relative;padding-left:20px}
 .v li::before{content:"";position:absolute;left:0;top:.66em;width:8px;height:2px;background:var(--dust)}
 .v.now li::before{background:var(--rust)}
+.cl-link{color:var(--rust-hi);font-weight:600;text-decoration:none;border-bottom:1px solid currentColor}.cl-link:hover{color:var(--bone)}
 .v-note{margin-top:12px;color:var(--ash);font-size:15px}
 @media (max-width:700px){.v{grid-template-columns:1fr;gap:12px;padding-left:24px}}
 
@@ -410,6 +411,7 @@ footer{background:var(--soot);border-top:1px solid var(--seam-2)}
             <div class="meta"><span class="kind" data-i18n="k_upd">Обновление</span><time datetime="2026-10-21">21.10.2026</time></div>
             <h3 data-i18n="n2h">Вышла 0.2.1: исправления из ваших сообщений</h3>
             <p data-i18n="n2p">Чертёж бура больше не теряется, Подстанция и обучение починены, плюс сортировка сундуков и новое вступление. Почти всё пришло из чата.</p>
+            <p><a class="cl-link" href="changelog-0.2.1.html" data-i18n="cl_full">Полный список изменений →</a></p>
             <details><summary><span class="open-t" data-i18n="more">Читать</span><span class="close-t" data-i18n="less">Свернуть</span><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M4 2l6 5-6 5" fill="none" stroke="currentColor" stroke-width="2"/></svg></summary>
               <div class="more"><ul>
                 <li data-i18n="v3i">Чертёж бура больше не теряется. Если он уже пропал в 0.2, после обновления ты получишь его один раз</li>
@@ -626,6 +628,7 @@ footer{background:var(--soot);border-top:1px solid var(--seam-2)}
               <li data-i18n="v3h">Предупреждение, если 60 FPS тяжело для телефона</li>
             </ul>
             <p class="v-note" data-i18n="v3note">Ставится поверх 0.1 и 0.2.0, сохранения остаются.</p>
+            <p class="v-note"><a class="cl-link" href="changelog-0.2.1.html" data-i18n="cl_full">Полный список изменений →</a></p>
           </div>
         </article>
         <article class="v">
@@ -756,7 +759,7 @@ footer{background:var(--soot);border-top:1px solid var(--seam-2)}
     v3c:"The stick no longer flips you into a run while sneaking",v3d:"Berries are gathered 2–3× faster",v3e:"The task card shows exactly what is missing",
     v3f:"Carpenter bench: 5 wood → 15 planks in one batch",v3g:"New intro: comic, hero name entry, new title screen, \"Continue / New game\"",
     v3h:"A warning when 60 FPS is too heavy for the phone",
-    v3i:"The drill blueprint can no longer be lost. If it already vanished in 0.2, you get it once after updating",v3j:"The Substation alarm re-arms again and the lockers open",v3k:"The tutorial no longer blocks you when you run out of wood",v3l:"After death you see where your bag was moved, with a marker on the World Map",v3m:"\"Not enough resources\" names exactly what is missing",v3note:"Installs over 0.1 and 0.2.0, your saves stay.",
+    v3i:"The drill blueprint can no longer be lost. If it already vanished in 0.2, you get it once after updating",v3j:"The Substation alarm re-arms again and the lockers open",v3k:"The tutorial no longer blocks you when you run out of wood",v3l:"After death you see where your bag was moved, with a marker on the World Map",v3m:"\"Not enough resources\" names exactly what is missing",v3note:"Installs over 0.1 and 0.2.0, your saves stay.",cl_full:"Full changelog →",
     v2a:"Basement: hatch, drill station, rock cells",v2b:"Gathering: resources only after the tree falls",v2c:"Workbench crafting 5–10 seconds, queue of three",
     v2d:"No hitting or shooting on the run, ammo must be found",v2e:"Mentor, a world of locations, new icons and hero clothing",v2f:"30/60 FPS toggle and automatic graphics quality",
     v1a:"First public version for Android and Windows",v1b:"Home, workbench, raids on the base, the Substation",v1c:"Two-player co-op over local network",
