@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Datenschutzerklärung von fibanachi.com / Privacy">
+<meta name="theme-color" content="#14110f">
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<title>Datenschutz | Last Fibanachi Survival</title>
+<link rel="stylesheet" href="fonts/fonts.css">
+<style>
+:root{--soot:#14110f;--concrete:#1d1a17;--slab:#26221e;--seam:rgba(236,226,212,.09);--seam-2:rgba(236,226,212,.18);--bone:#efe8dc;--ash:#a39a8e;--dust:#766e64;--rust:#c9472b;--rust-hi:#e2593a;--gas:#8fae5a;--display:"Fira Sans Extra Condensed","Arial Narrow",sans-serif;--body:"Fira Sans","Segoe UI",system-ui,sans-serif;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--soot);color:var(--bone);font:400 17px/1.6 var(--body);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.bar{position:sticky;top:0;z-index:5;background:rgba(20,17,15,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--seam)}
+.bar .in{max-width:860px;margin:0 auto;padding:0 16px;height:60px;display:flex;align-items:center;gap:16px}
+.back{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font:700 17px/1 var(--display);letter-spacing:.04em;text-transform:uppercase}
+.back:hover{color:var(--rust-hi)}
+.back img{width:26px;height:26px}
+.lang{margin-left:auto;display:inline-flex;border:1px solid var(--seam-2)}
+.lang button{font:700 14px/1 var(--display);letter-spacing:.06em;color:#d9d1c5;background:transparent;border:0;padding:0 11px;min-height:36px;cursor:pointer}
+.lang button[aria-pressed="true"]{background:var(--bone);color:var(--soot)}
+main{max-width:860px;margin:0 auto;padding:48px 16px 80px}
+.kicker{font:700 15px/1 var(--display);letter-spacing:.12em;text-transform:uppercase;color:var(--rust-hi)}
+h1{font:900 clamp(44px,9vw,84px)/.92 var(--display);text-transform:uppercase;margin:12px 0 18px;letter-spacing:-.01em}
+.meta{color:var(--ash);font-size:15px;display:flex;flex-wrap:wrap;gap:6px 18px;margin-bottom:28px}
+.meta b{color:var(--bone);font-weight:600}
+.dl{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 40px}
+.btn{display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:0 20px;font:800 18px/1 var(--display);letter-spacing:.05em;text-transform:uppercase;text-decoration:none;border:1px solid var(--seam-2)}
+.btn.rust{background:var(--rust);border-color:var(--rust);color:#fff}
+.btn:hover{border-color:var(--rust-hi)}
+.btn small{font:500 13px/1 var(--body);opacity:.8;text-transform:none;letter-spacing:0}
+h2{font:800 30px/1 var(--display);text-transform:uppercase;letter-spacing:.02em;margin:40px 0 14px;padding-top:18px;border-top:1px solid var(--seam)}
+h2.known{color:var(--ash)}
+ul{margin:0;padding:0;list-style:none;display:grid;gap:12px}
+li{position:relative;padding-left:22px;color:#d6cdc0}
+li::before{content:"";position:absolute;left:0;top:.62em;width:9px;height:9px;background:var(--rust)}
+h2.known + ul li::before{background:var(--dust)}
+li b{color:var(--bone);font-weight:600}
+code{font:500 .9em/1 ui-monospace,Consolas,monospace;background:var(--slab);padding:2px 5px}
+.foot{margin-top:56px;color:var(--dust);font-size:14px;border-top:1px solid var(--seam);padding-top:18px}
+[data-l]{display:none}
+html[lang="ru"] [data-l="ru"],html[lang="en"] [data-l="en"]{display:block}
+html[lang="ru"] .meta[data-l="ru"],html[lang="en"] .meta[data-l="en"]{display:flex}
+html[lang="ru"] span[data-l="ru"],html[lang="en"] span[data-l="en"]{display:inline}
+@media (max-width:520px){body{font-size:16px}h2{font-size:26px}}
+
+p{margin:0 0 14px;color:#d6cdc0}
+.lead-p{font-size:19px;color:var(--bone)}
+table{width:100%;border-collapse:collapse;margin:6px 0 18px;font-size:15px}
+th,td{text-align:left;vertical-align:top;padding:10px 10px;border-bottom:1px solid var(--seam)}
+th{font:700 14px/1.2 var(--display);letter-spacing:.06em;text-transform:uppercase;color:var(--ash)}
+tr.pick td{background:rgba(201,71,43,.12)}
+tr.pick td:first-child{color:var(--bone);font-weight:600}
+.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.tw table{min-width:560px}
+ul{margin:0 0 16px}
+.ask{margin-top:28px;padding:18px;border:1px solid var(--seam-2);background:var(--concrete)}
+.ask p{margin:0}
+.ask a{color:var(--rust-hi)}
+.cover{margin:0 0 28px;border:1px solid var(--seam)}
+.cover img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover}
+</style>
+<style>main h2{font-size:24px}main h3{font:700 19px/1.2 var(--display);text-transform:uppercase;letter-spacing:.03em;margin:22px 0 8px}main p,main li{font-size:16px}main a{color:var(--rust-hi)}address{font-style:normal;color:#d6cdc0;line-height:1.7;margin:0 0 14px}</style>
+</head>
+<body>
+<header class="bar"><div class="in">
+  <a class="back" href="./"><img src="favicon-32.png" alt=""><span>← fibanachi.com</span></a>
+</div></header>
+<main>
+  <div class="kicker">Rechtliches · Stand: 24.10.2026</div>
+  <h1>Datenschutz</h1>
+  <h2>Datenschutzerklärung</h2>
+  <p>Diese Erklärung gilt für die Website fibanachi.com. Für das Spiel selbst gilt: Spielstände werden lokal auf deinem Gerät gespeichert.</p>
+  <h3>1. Verantwortlicher</h3>
+  <address>Igor Ivannik, MultiRing Company, Allee der Kosmonauten 25, 10315 Berlin, Deutschland<br>E-Mail: <a href="mailto:hello@multiring.app">hello@multiring.app</a></address>
+  <h3>2. Hosting und Server-Logfiles</h3>
+  <p>Die Website wird über GitHub Pages bereitgestellt (GitHub, Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, USA). Beim Aufruf verarbeitet GitHub technisch notwendige Daten, insbesondere die IP-Adresse, Datum und Uhrzeit, die aufgerufene Seite und Browserangaben, um die Website auszuliefern und abzusichern. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an einem sicheren und stabilen Betrieb). Dabei können Daten in die USA übermittelt werden; Einzelheiten und die von GitHub genutzten Garantien findest du im <a href="https://docs.github.com/de/site-policy/privacy-policies/github-general-privacy-statement" rel="noopener">GitHub Privacy Statement</a>.</p>
+  <h3>3. Downloads</h3>
+  <p>Die Spieldateien (APK, Windows-ZIP) werden über GitHub Releases ausgeliefert. Beim Download verarbeitet GitHub dieselben technischen Daten wie unter Punkt 2.</p>
+  <h3>4. Keine Cookies, keine Analyse, keine Werbung</h3>
+  <p>Wir setzen keine Cookies, keine Analyse- oder Tracking-Tools und keine Werbenetzwerke ein. Schriftarten werden von unserem eigenen Server geladen, nicht von Drittanbietern.</p>
+  <p>Deine Sprachauswahl (RU/EN) wird im lokalen Speicher deines Browsers (localStorage, Schlüssel „lfs_lang") abgelegt, damit die Seite beim nächsten Besuch in deiner Sprache erscheint. Diese Information verlässt dein Gerät nicht. Rechtsgrundlage ist § 25 Abs. 2 Nr. 2 TDDDG; du kannst sie jederzeit über die Browsereinstellungen löschen.</p>
+  <h3>5. Partner-Bewerbung und Kontakt per E-Mail</h3>
+  <p>Das Bewerbungsformular überträgt keine Daten an uns. Es öffnet lediglich dein E-Mail-Programm mit einer vorausgefüllten Nachricht an hello@multiring.app. Erst wenn du diese E-Mail selbst absendest, erhalten wir die darin enthaltenen Angaben (z. B. Kanal-Link, Kontakt, Nachricht). Wir verwenden sie nur zur Bearbeitung deiner Anfrage (Art. 6 Abs. 1 lit. b und f DSGVO) und löschen sie, wenn sie dafür nicht mehr erforderlich sind. Für die E-Mail-Weiterleitung setzen wir Cloudflare, Inc. ein.</p>
+  <h3>6. Externe Links</h3>
+  <p>Links zu YouTube, Telegram, Discord und GitHub sind einfache Verweise ohne eingebettete Inhalte. Erst wenn du sie anklickst, gelten die Datenschutzbestimmungen des jeweiligen Anbieters.</p>
+  <h3>7. Deine Rechte</h3>
+  <p>Du hast das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung, Datenübertragbarkeit und Widerspruch (Art. 15 bis 21 DSGVO). Wende dich dazu an hello@multiring.app. Außerdem kannst du dich bei einer Aufsichtsbehörde beschweren, zum Beispiel bei der Berliner Beauftragten für Datenschutz und Informationsfreiheit.</p>
+  <h2>Privacy summary (English)</h2>
+  <p>fibanachi.com is hosted on GitHub Pages; GitHub processes technical data such as your IP address to deliver the site and downloads. We use no cookies, no analytics, no ads, and self-hosted fonts. Your language choice is stored only in your browser (localStorage). The partner form sends nothing by itself: it opens an email to hello@multiring.app that you send yourself. Controller: Igor Ivannik, MultiRing Company, Allee der Kosmonauten 25, 10315 Berlin, Germany. The German version above is authoritative.</p>
+  <h2>Кратко по-русски</h2>
+  <p>Сайт размещён на GitHub Pages: GitHub обрабатывает технические данные (например, IP-адрес), чтобы показать сайт и отдать файлы игры. Cookies, аналитики и рекламы нет, шрифты загружаются с нашего сайта. Выбранный язык хранится только в твоём браузере. Форма заявки сама ничего не отправляет: она открывает письмо на hello@multiring.app, которое ты отправляешь сам. Юридически обязательна немецкая версия выше.</p>
+  <p class="foot"><a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a></p>
+</main>
+</body>
+</html>

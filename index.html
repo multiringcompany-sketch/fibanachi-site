@@ -11,9 +11,8 @@
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <title>Last Fibanachi Survival</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Sans+Extra+Condensed:wght@500;700;800;900&family=Fira+Sans:wght@400;500;600&display=swap">
+<link rel="preload" href="fonts/fira-sans-extra-condensed-cyrillic-900-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="fonts/fonts.css">
 <style>
 /*
   Concept: the descent. The page reads top to bottom like going down from the night surface into the warm basement
@@ -78,6 +77,7 @@ p{margin:0}
 .cta svg{width:16px;height:16px}
 @media (max-width:900px){.menu{display:none}.lang{margin-left:auto}}
 @media (max-width:440px){.top .cta{display:none}.brand b{font-size:18px}}
+@media (max-width:360px){.top .wrap{gap:10px}.brand{gap:8px}.brand img{height:26px}.brand b{font-size:15px}.lang button{padding:0 8px}}
 
 /* hero */
 .hero{position:relative;min-height:min(92vh,880px);display:grid;align-items:end;overflow:hidden;background:var(--soot);padding:0}
@@ -605,7 +605,7 @@ footer{background:var(--soot);border-top:1px solid var(--seam-2)}
           <div class="field"><label for="pf-contact" data-i18n="pf_contact">Контакт для связи (Telegram или почта)</label><input id="pf-contact" name="contact" type="text" required placeholder="@nickname"></div>
           <div class="field"><label for="pf-about" data-i18n="pf_about">Что планируешь снимать</label><textarea id="pf-about" name="about" data-i18n-ph="pf_about_ph" placeholder="Обзор, прохождение, стрим кооператива..."></textarea></div>
           <button class="submit" type="submit" data-i18n="pf_send">Отправить заявку</button>
-          <p class="form-msg" id="pf-msg" role="status" data-i18n="pf_hint">Приём заявок скоро заработает. Пока пиши в Telegram-канал.</p>
+          <p class="form-msg" id="pf-msg" role="status" data-i18n="pf_hint">Заявка откроется письмом на hello@multiring.app в твоей почте. Данные из формы никуда не отправляются, пока ты сам не отправишь письмо.</p>
         </form>
       </div>
     </div>
@@ -692,6 +692,9 @@ footer{background:var(--soot);border-top:1px solid var(--seam-2)}
         <details><summary><span data-i18n="q3">Игра тормозит на телефоне</span><i></i></summary><p data-i18n="a3">Открой меню паузы и выбери 30 FPS и качество LOW. На слабых телефонах 60 FPS может тормозить.</p></details>
         <details><summary><span data-i18n="q4">Где взять бур для подвала?</span><i></i></summary><p data-i18n="a4">Чертёж дают за Подстанцию. Буровую установку крафтят на продвинутом верстаке, нужен 8-й уровень.</p></details>
         <details><summary><span data-i18n="q5">Будет iOS и кооп через интернет?</span><i></i></summary><p data-i18n="a5">Да. Кооп на двоих уже работает по локальной сети, серверный в работе. iOS выйдет через TestFlight.</p></details>
+        <details><summary><span data-i18n="q6">Как играть вдвоём?</span><i></i></summary><p><span data-i18n="a6">Сейчас кооператив работает по локальной сети: оба устройства должны быть в одной Wi-Fi сети. Нажми «Кооп» на главном экране, один игрок создаёт игру, второй подключается по коду. Игра через интернет и общий лагерь в работе.</span> <a class="cl-link" href="coop.html" data-i18n="a6l">Как будет устроен кооператив →</a></p></details>
+        <details><summary><span data-i18n="q7">Можно перенести сохранение на другой ПК или телефон?</span><i></i></summary><p data-i18n="a7">Пока нет: сохранение хранится на самом устройстве. Перенос между устройствами в планах, вместе с облачными сохранениями.</p></details>
+        <details><summary><span data-i18n="q8">Бот в Telegram не даёт ссылку на скачивание</span><i></i></summary><p data-i18n="a8">Скачивай игру здесь, на сайте, в разделе «Скачать». Это официальный источник, файлы проверены по SHA-256.</p></details>
       </div>
     </div>
   </section>
@@ -711,8 +714,9 @@ footer{background:var(--soot);border-top:1px solid var(--seam-2)}
       <a href="#news" data-i18n="nav_news">Новости</a><a href="#download" data-i18n="cta_dl">Скачать</a><a href="#versions" data-i18n="nav_ver">Версии</a><a href="#partners" data-i18n="nav_partners">Партнёры</a><a href="#join" data-i18n="nav_join">Стать партнёром</a><a href="#faq" data-i18n="nav_faq">Вопросы</a>
     </nav>
     <div class="foot-b">
-      <span data-i18n="foot1">Last Fibanachi Survival. Делает Fibanachi.</span>
+      <span data-i18n="foot1">Last Fibanachi Survival. Делает Fibanachi, издатель MultiRing Company.</span>
       <span data-i18n="foot2">Нашёл баг? Напиши в Telegram.</span>
+      <span class="legal"><a href="impressum.html">Impressum</a> · <a href="datenschutz.html" data-i18n="privacy">Datenschutz</a></span>
     </div>
   </div>
 </footer>
@@ -767,8 +771,8 @@ footer{background:var(--soot);border-top:1px solid var(--seam-2)}
     step1:"You send an application",step2:"I review the channel",step3:"You're in the partner list",
     pf_channel:"Channel link",pf_platform:"Platform",pf_other:"Other",pf_audience:"Subscribers",
     pf_contact:"Contact (Telegram or email)",pf_about:"What you plan to film",pf_about_ph:"A review, a playthrough, a co-op stream...",
-    pf_send:"Send application",pf_hint:"Applications open soon. Until then, write on the Telegram channel.",
-    pf_need:"Add your channel link and a contact.",pf_ok:"Thanks. Applications are not received yet, so please also message the Telegram channel.",
+    pf_send:"Send application",pf_hint:"The application opens as an email to hello@multiring.app in your mail app. Nothing is sent until you send that email yourself.",
+    pf_need:"Add your channel link and a contact.",pf_ok:"Your mail app should open now with the application. Send it to finish. Nothing opened? Write to hello@multiring.app.",
     ver_h:"Every update",current:"Current",v3date:"soon",testing:"In testing",wipnum:"Next",wip:"In development",
     w1:"Real-time stations: cooking, smelting and drilling keep running even when the game is closed",
     w3:"Charlie's Bunker under the Substation: gas, Spitters and the Obval boss. Tokens buy drill charges. Once per day",
@@ -789,11 +793,12 @@ footer{background:var(--soot);border-top:1px solid var(--seam-2)}
     q2:"I installed “LFS Player Preview 02”. What now?",a2:"That was a separate test build. Uninstall it and install the APK from this page. Its progress doesn't carry over.",
     q3:"The game lags on my phone",a3:"Open the pause menu and pick 30 FPS and LOW quality. On weak phones 60 FPS may stutter.",
     q4:"Where do I get the drill for the basement?",a4:"The blueprint is the Substation reward. The drill station is crafted at the advanced workbench, level 8 required.",
+    q6:"How do I play with a friend?",a6:"Right now co-op works over a local network: both devices must be on the same Wi-Fi. Tap CO-OP on the title screen, one player hosts, the other joins with the code. Online play and the Shared Camp are in progress.",a6l:"How co-op will work →",q7:"Can I move my save to another PC or phone?",a7:"Not yet: the save lives on the device itself. Moving saves between devices is planned, together with cloud saves.",q8:"The Telegram bot does not give me a download link",a8:"Download the game here on the site, in the Download section. It is the official source, files are checked by SHA-256.",
     q5:"Will there be iOS and online co-op?",a5:"Yes. Two-player co-op already works over a local network, online is in progress. iOS will come via TestFlight.",
-    foot1:"Last Fibanachi Survival. Made by Fibanachi.",foot2:"Found a bug? Write on Telegram."
+    foot1:"Last Fibanachi Survival. Made by Fibanachi, published by MultiRing Company.",privacy:"Privacy",foot2:"Found a bug? Write on Telegram."
   };
   var RU={d_surface:"Поверхность",d_hatch:"Люк",d_news:"Новости",d_world:"Мир",d_new:"В игре",d_dev:"Автор",d_part:"Партнёры",d_ver:"Версии",d_deep:"Дно бункера",
-    pf_need:"Укажи ссылку на канал и контакт.",pf_ok:"Спасибо. Приём заявок ещё не включён, поэтому продублируй, пожалуйста, в Telegram-канал."};
+    pf_need:"Укажи ссылку на канал и контакт.",pf_ok:"Сейчас откроется почта с готовой заявкой. Отправь письмо, чтобы закончить. Не открылась? Напиши на hello@multiring.app."};
   document.querySelectorAll("[data-i18n]").forEach(function(el){if(RU[el.dataset.i18n]==null)RU[el.dataset.i18n]=el.textContent});
   document.querySelectorAll("[data-i18n-alt]").forEach(function(el){RU[el.dataset.i18nAlt]=el.getAttribute("alt")});
   document.querySelectorAll("[data-i18n-ph]").forEach(function(el){RU[el.dataset.i18nPh]=el.getAttribute("placeholder")});
@@ -838,6 +843,8 @@ footer{background:var(--soot);border-top:1px solid var(--seam-2)}
   form.addEventListener("submit",function(e){
     e.preventDefault();
     if(!form.channel.value.trim()||!form.contact.value.trim()){msg.className="form-msg";msg.textContent=t("pf_need");return}
+    var body=["Channel: "+form.channel.value.trim(),"Platform: "+form.platform.value,"Subscribers: "+form.audience.value.trim(),"Contact: "+form.contact.value.trim(),"","Plans:",form.about.value.trim()].join("\n");
+    location.href="mailto:hello@multiring.app?subject="+encodeURIComponent("LFS partner application")+"&body="+encodeURIComponent(body);
     msg.className="form-msg ok";msg.textContent=t("pf_ok");
   });
 
