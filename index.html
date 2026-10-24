@@ -383,9 +383,9 @@ footer{background:var(--soot);border-top:1px solid var(--seam-2)}
           <div class="facts"><span data-i18n="zip_note">Распакуй и запусти .exe. Прогресс 0.2.0 перенесётся сам</span><code>SHA-256 1ECCB813B759C7F057517AEC329C5F9C9A5877C90F18BE66AA7CC03EE5E84AA4</code></div>
         </div>
         <div class="plat">
-          <div class="plat-h"><h3>iOS</h3><span data-i18n="soon">скоро</span></div>
-          <span class="btn btn-ghost" aria-disabled="true"><span data-i18n="in_dev">В разработке</span><small>TestFlight</small></span>
-          <div class="facts"><span data-i18n="ios_note">Сообщим в Telegram, когда откроем тест</span></div>
+          <div class="plat-h"><h3>iOS</h3><span>v0.2.1 · beta</span></div>
+          <a class="btn btn-ghost" href="https://testflight.apple.com/join/8F567j93" target="_blank" rel="noopener"><span data-i18n="ios_tf">Установить</span><small>TestFlight</small></a>
+          <div class="facts"><span data-i18n="ios_note2">Сначала поставь TestFlight из App Store, потом открой ссылку. Нужен iOS 15 или новее.</span></div>
         </div>
       </div>
       <p class="dl-note" data-i18n="proto_dl">Файлы лежат на GitHub. Проверить, что файл не подменён, можно по SHA-256: команда Get-FileHash в PowerShell.</p>
@@ -691,7 +691,7 @@ footer{background:var(--soot);border-top:1px solid var(--seam-2)}
         <details><summary><span data-i18n="q2">Ставил «LFS Player Preview 02». Что делать?</span><i></i></summary><p data-i18n="a2">Это была отдельная тестовая сборка. Удали её и поставь APK с этой страницы. Прогресс из неё не переносится.</p></details>
         <details><summary><span data-i18n="q3">Игра тормозит на телефоне</span><i></i></summary><p data-i18n="a3">Открой меню паузы и выбери 30 FPS и качество LOW. На слабых телефонах 60 FPS может тормозить.</p></details>
         <details><summary><span data-i18n="q4">Где взять бур для подвала?</span><i></i></summary><p data-i18n="a4">Чертёж дают за Подстанцию. Буровую установку крафтят на продвинутом верстаке, нужен 8-й уровень.</p></details>
-        <details><summary><span data-i18n="q5">Будет iOS и кооп через интернет?</span><i></i></summary><p data-i18n="a5">Да. Кооп на двоих уже работает по локальной сети, серверный в работе. iOS выйдет через TestFlight.</p></details>
+        <details><summary><span data-i18n="q5">Есть ли iOS и кооп через интернет?</span><i></i></summary><p data-i18n="a5">iOS уже есть: ставится через TestFlight в разделе «Скачать». Кооп на двоих работает по локальной сети, через интернет в работе.</p></details>
         <details><summary><span data-i18n="q6">Как играть вдвоём?</span><i></i></summary><p><span data-i18n="a6">Сейчас кооператив работает по локальной сети: оба устройства должны быть в одной Wi-Fi сети. Нажми «Кооп» на главном экране, один игрок создаёт игру, второй подключается по коду. Игра через интернет и общий лагерь в работе.</span> <a class="cl-link" href="coop.html" data-i18n="a6l">Как будет устроен кооператив →</a></p></details>
         <details><summary><span data-i18n="q7">Можно перенести сохранение на другой ПК или телефон?</span><i></i></summary><p data-i18n="a7">Пока нет: сохранение хранится на самом устройстве. Перенос между устройствами в планах, вместе с облачными сохранениями.</p></details>
         <details><summary><span data-i18n="q8">Бот в Telegram не даёт ссылку на скачивание</span><i></i></summary><p data-i18n="a8">Скачивай игру здесь, на сайте, в разделе «Скачать». Это официальный источник, файлы проверены по SHA-256.</p></details>
@@ -731,7 +731,7 @@ footer{background:var(--soot);border-top:1px solid var(--seam-2)}
     lede:"Gather, build a home, hold off night raids and dig your own base underground. An indie survival game that grows every week together with its players.",
     hero_dl:"Download free",watch:"Watch the video",hero_note:"Android and Windows. Version 0.2.1, updates every week.",
     dl_apk:"Download APK",apk_note:"Installs over 0.1 and 0.2.0, your saves stay",dl_zip:"Download ZIP",zip_note:"Unzip and run the .exe. Your 0.2.0 progress carries over",
-    soon:"soon",in_dev:"In development",ios_note:"We'll announce the test on Telegram",
+    soon:"soon",in_dev:"In development",ios_note:"We'll announce the test on Telegram",ios_tf:"Install",ios_note2:"Install TestFlight from the App Store first, then open the link. Requires iOS 15 or later.",
     proto_dl:"Files are hosted on GitHub. To check a file wasn't tampered with, compare its SHA-256 (Get-FileHash in PowerShell).",
     news_h:"News from the base",f_all:"All",f_upd:"Updates",f_dev:"Devblog",f_com:"Community",k_dev:"Devblog",k_upd:"Update",k_com:"Community",more:"Read",less:"Collapse",
     n9h:"The beasts come out to hunt",n9p:"The forest is no longer safe: the boar charges, the bear rears up and roars. At night you only see their eyes. Coming soon.",
@@ -794,7 +794,7 @@ footer{background:var(--soot);border-top:1px solid var(--seam-2)}
     q3:"The game lags on my phone",a3:"Open the pause menu and pick 30 FPS and LOW quality. On weak phones 60 FPS may stutter.",
     q4:"Where do I get the drill for the basement?",a4:"The blueprint is the Substation reward. The drill station is crafted at the advanced workbench, level 8 required.",
     q6:"How do I play with a friend?",a6:"Right now co-op works over a local network: both devices must be on the same Wi-Fi. Tap CO-OP on the title screen, one player hosts, the other joins with the code. Online play and the Shared Camp are in progress.",a6l:"How co-op will work →",q7:"Can I move my save to another PC or phone?",a7:"Not yet: the save lives on the device itself. Moving saves between devices is planned, together with cloud saves.",q8:"The Telegram bot does not give me a download link",a8:"Download the game here on the site, in the Download section. It is the official source, files are checked by SHA-256.",
-    q5:"Will there be iOS and online co-op?",a5:"Yes. Two-player co-op already works over a local network, online is in progress. iOS will come via TestFlight.",
+    q5:"Is there iOS and online co-op?",a5:"iOS is already here: install it via TestFlight in the Download section. Two-player co-op works over a local network, online play is in progress.",
     foot1:"Last Fibanachi Survival. Made by Fibanachi, published by MultiRing Company.",privacy:"Privacy",foot2:"Found a bug? Write on Telegram."
   };
   var RU={d_surface:"Поверхность",d_hatch:"Люк",d_news:"Новости",d_world:"Мир",d_new:"В игре",d_dev:"Автор",d_part:"Партнёры",d_ver:"Версии",d_deep:"Дно бункера",
