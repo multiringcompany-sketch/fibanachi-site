@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Как в Last Fibanachi Survival устроен кооператив: Общий лагерь на двоих / How co-op works in LFS: the Shared Camp.">
+<meta name="theme-color" content="#14110f">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<title>Shared Camp | Last Fibanachi Survival</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Sans+Extra+Condensed:wght@500;700;800;900&family=Fira+Sans:wght@400;500;600&display=swap">
+<style>
+:root{--soot:#14110f;--concrete:#1d1a17;--slab:#26221e;--seam:rgba(236,226,212,.09);--seam-2:rgba(236,226,212,.18);--bone:#efe8dc;--ash:#a39a8e;--dust:#766e64;--rust:#c9472b;--rust-hi:#e2593a;--gas:#8fae5a;--display:"Fira Sans Extra Condensed","Arial Narrow",sans-serif;--body:"Fira Sans","Segoe UI",system-ui,sans-serif;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--soot);color:var(--bone);font:400 17px/1.6 var(--body);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.bar{position:sticky;top:0;z-index:5;background:rgba(20,17,15,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--seam)}
+.bar .in{max-width:860px;margin:0 auto;padding:0 16px;height:60px;display:flex;align-items:center;gap:16px}
+.back{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font:700 17px/1 var(--display);letter-spacing:.04em;text-transform:uppercase}
+.back:hover{color:var(--rust-hi)}
+.back img{width:26px;height:26px}
+.lang{margin-left:auto;display:inline-flex;border:1px solid var(--seam-2)}
+.lang button{font:700 14px/1 var(--display);letter-spacing:.06em;color:#d9d1c5;background:transparent;border:0;padding:0 11px;min-height:36px;cursor:pointer}
+.lang button[aria-pressed="true"]{background:var(--bone);color:var(--soot)}
+main{max-width:860px;margin:0 auto;padding:48px 16px 80px}
+.kicker{font:700 15px/1 var(--display);letter-spacing:.12em;text-transform:uppercase;color:var(--rust-hi)}
+h1{font:900 clamp(44px,9vw,84px)/.92 var(--display);text-transform:uppercase;margin:12px 0 18px;letter-spacing:-.01em}
+.meta{color:var(--ash);font-size:15px;display:flex;flex-wrap:wrap;gap:6px 18px;margin-bottom:28px}
+.meta b{color:var(--bone);font-weight:600}
+.dl{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 40px}
+.btn{display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:0 20px;font:800 18px/1 var(--display);letter-spacing:.05em;text-transform:uppercase;text-decoration:none;border:1px solid var(--seam-2)}
+.btn.rust{background:var(--rust);border-color:var(--rust);color:#fff}
+.btn:hover{border-color:var(--rust-hi)}
+.btn small{font:500 13px/1 var(--body);opacity:.8;text-transform:none;letter-spacing:0}
+h2{font:800 30px/1 var(--display);text-transform:uppercase;letter-spacing:.02em;margin:40px 0 14px;padding-top:18px;border-top:1px solid var(--seam)}
+h2.known{color:var(--ash)}
+ul{margin:0;padding:0;list-style:none;display:grid;gap:12px}
+li{position:relative;padding-left:22px;color:#d6cdc0}
+li::before{content:"";position:absolute;left:0;top:.62em;width:9px;height:9px;background:var(--rust)}
+h2.known + ul li::before{background:var(--dust)}
+li b{color:var(--bone);font-weight:600}
+code{font:500 .9em/1 ui-monospace,Consolas,monospace;background:var(--slab);padding:2px 5px}
+.foot{margin-top:56px;color:var(--dust);font-size:14px;border-top:1px solid var(--seam);padding-top:18px}
+[data-l]{display:none}
+html[lang="ru"] [data-l="ru"],html[lang="en"] [data-l="en"]{display:block}
+html[lang="ru"] .meta[data-l="ru"],html[lang="en"] .meta[data-l="en"]{display:flex}
+html[lang="ru"] span[data-l="ru"],html[lang="en"] span[data-l="en"]{display:inline}
+@media (max-width:520px){body{font-size:16px}h2{font-size:26px}}
+
+p{margin:0 0 14px;color:#d6cdc0}
+.lead-p{font-size:19px;color:var(--bone)}
+table{width:100%;border-collapse:collapse;margin:6px 0 18px;font-size:15px}
+th,td{text-align:left;vertical-align:top;padding:10px 10px;border-bottom:1px solid var(--seam)}
+th{font:700 14px/1.2 var(--display);letter-spacing:.06em;text-transform:uppercase;color:var(--ash)}
+tr.pick td{background:rgba(201,71,43,.12)}
+tr.pick td:first-child{color:var(--bone);font-weight:600}
+.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.tw table{min-width:560px}
+ul{margin:0 0 16px}
+.ask{margin-top:28px;padding:18px;border:1px solid var(--seam-2);background:var(--concrete)}
+.ask p{margin:0}
+.ask a{color:var(--rust-hi)}
+</style>
+</head>
+<body>
+<header class="bar"><div class="in">
+  <a class="back" href="./#news"><img src="favicon-32.png" alt=""><span data-l="ru">← На сайт</span><span data-l="en">← Back to site</span></a>
+  <div class="lang" role="group" aria-label="Language"><button type="button" data-set="ru" aria-pressed="true">RU</button><button type="button" data-set="en" aria-pressed="false">EN</button></div>
+</div></header>
+<main>
+  <div class="kicker"><span data-l="ru">Девблог · 24.10.2026</span><span data-l="en">Devblog · 24 Oct 2026</span></div>
+  <h1><span data-l="ru">Кооператив без боли</span><span data-l="en">Co-op without the pain</span></h1>
+  <div class="meta" data-l="ru"><span><b>Общий лагерь</b> как мы будем выживать вдвоём</span></div>
+  <div class="meta" data-l="en"><span><b>The Shared Camp</b> how we will survive together</span></div>
+  <section data-l="ru" lang="ru">
+<h2>Почему кооператив на выживание делают так редко</h2>
+<p class="lead-p">Кооператив в LFS уже работает, и именно за него игру хвалят больше всего. Но настоящее выживание вдвоём, с общей базой и общим миром, задача гораздо сложнее, чем кажется.</p>
+<p>Даже в Last Day on Earth совместная игра появилась в отдельных местах: город в Кратере, кланы, совместные локации. Теперь я понимаю почему. Стоит пустить двух игроков в один мир, и сразу возникают вопросы: чей это мир, чьё время суток, чей сундук, кто виноват, если пропали вещи.</p>
+<h2>Что показал первый тест на двух iPhone</h2>
+<p>Я положил перед собой два iPhone и соединил их в кооператив. Вместе бегать и сражаться получилось, но сразу всплыли три вещи:</p>
+<ul><li>на одном телефоне был день, на другом ночь;</li><li>мою базу второй игрок не видел, а его базу не видел я;</li><li>с его телефона было видно, как мой герой проходит сквозь его стены.</li></ul>
+<p>Это не три мелких бага, а один большой вопрос: в чьём мире вы играете. Пока он не решён, таких проблем со временем будет только больше.</p>
+<h2>Главный вопрос: чей это мир</h2>
+<p>Мы выбрали гибрид «Общий лагерь»: один мир на двоих на сервере и общая база, но с личными правами на каждую вещь.</p>
+<div class="tw"><table><thead><tr><th>Вариант</th><th>Как устроен</th><th>Сильная сторона</th><th>Слабая сторона</th></tr></thead><tbody>
+<tr><td>Мир хозяина</td><td>гость приходит в мир друга со своим героем</td><td>просто, один источник правды</td><td>гость может что-то унести или сломать</td></tr>
+<tr><td>Базы рядом</td><td>у каждого свой дом, дома соединены</td><td>личное остаётся личным</td><td>это соседство, а не выживание вместе</td></tr>
+<tr><td>Общее сохранение</td><td>один мир на двоих без правил</td><td>самое «вместе»</td><td>больше всего ссор и потерянного прогресса</td></tr>
+<tr class="pick"><td>Общий лагерь</td><td>один мир на сервере, общая база, права на каждую вещь</td><td>выживаете вместе, но украсть нельзя</td><td>нужен сервер и больше работы</td></tr>
+</tbody></table></div>
+<p>Идея простая: «Last Day для двоих». Только ты и друг, без чужих людей и PvP.</p>
+<h2>Общий лагерь: база на двоих</h2>
+<p>У лагеря одно время суток, один сброс локаций и одни рейды на двоих. База стоит на участке в два раза больше обычного, чистом от декора, и строите её вы вместе.</p>
+<p>Главное правило: <b>у каждой постройки есть владелец, тот, кто её поставил</b>.</p>
+<ul><li>Улучшать стены и полы может любой из двоих.</li><li>Сносить можно только своё. Чтобы снести постройку партнёра, нужно его подтверждение.</li><li>У каждого своя кровать и своя точка возрождения.</li></ul>
+<h2>Ящики: ты сам решаешь, что личное</h2>
+<p>Когда ставишь ящик, выбираешь его тип.</p>
+<div class="tw"><table><thead><tr><th>Тип ящика</th><th>Кто открывает</th><th>Для чего</th></tr></thead><tbody>
+<tr><td>Личный</td><td>только владелец, партнёр видит замок и имя</td><td>твоё никто не тронет</td></tr>
+<tr><td>Общий</td><td>оба</td><td>общий склад ресурсов</td></tr>
+<tr><td>Обменный</td><td>у каждого своя половина, обмен после двух подтверждений</td><td>честный обмен без «дай, потом отдам»</td></tr>
+<tr><td>Посылка</td><td>кладёт один, забирает только второй</td><td>передать вещи другу, пока он не в игре</td></tr>
+<tr><td>С кодом</td><td>кто знает код</td><td>на будущее, если в лагере станет больше двух игроков</td></tr>
+</tbody></table></div>
+<p>У каждого ящика есть <b>журнал</b>: «Миша взял 3 доски, 12:04», «Игорь положил 10 гвоздей». Спор «кто украл» решается за секунду.</p>
+<h2>Купленное не пропадёт, лут делится честно</h2>
+<p>Всё, что куплено за деньги, привязано к аккаунту. Его нельзя положить в ящик, выбросить, обменять или потерять при смерти. Друг его только видит. Тот, кто поддержал игру, не может ничего потерять.</p>
+<ul><li>в сундуках на вылазках у каждого своё содержимое;</li><li>с босса каждый участник боя получает свою добычу, свои жетоны и свой опыт;</li><li>выпавший предмет первые 60 секунд может поднять только тот, чей он;</li><li>рюкзак после смерти открывает только его хозяин;</li><li>обмен только через окно обмена, оба подтверждают;</li><li>урона по другу нет.</li></ul>
+<h2>Выживать придётся вместе</h2>
+<ul><li><b>Поднять друга.</b> Раненый друг падает, и у тебя есть 30 секунд, чтобы поднять его бинтом.</li><li><b>Общие станции.</b> Кузницу и бур может запустить любой, а результат получает тот, кто запустил.</li><li><b>Рейды на общую базу.</b> Их сила зависит от того, сколько игроков в игре. Когда оба не в сети, рейдов нет.</li><li><b>Задания и прогресс у каждого свои</b>, но убийство или включённый рычаг засчитываются обоим, если вы рядом.</li><li><b>Голод, жажда, уровень и навыки</b> у каждого свои.</li></ul>
+<h2>Если поссорились</h2>
+<p>Правила выхода известны заранее: игрок видит их, когда принимает приглашение.</p>
+<ul><li>Лагерь принадлежит тому, кто его создал. Приглашённый может выйти в любой момент.</li><li>Уходящий забирает всё из своих личных ящиков, оно приходит ему посылкой.</li><li>За свои постройки он получает обратно половину материалов.</li><li>Общий склад остаётся в лагере.</li></ul>
+<h2>Что дальше</h2>
+<p>«Общий лагерь» выйдет отдельным большим обновлением вместе с игрой через сервер, тогда играть можно будет из разных сетей. Даты пока нет: сначала мы делаем его правильно, потом быстро.</p>
+<p>Уже в 0.2.2 кооператив по локальной сети получит самые важные исправления (план):</p>
+<ul><li>время суток всегда как у хозяина игры;</li><li>кооператив начинается на вылазках, а база пока у каждого своя;</li><li>рюкзак после смерти открывает только его хозяин.</li></ul>
+<div class="ask"><p>Что бы вы добавили в правила лагеря? Пишите в комментариях в <a href="https://t.me/fibsail">Telegram</a>, всё читаю. Игорь, Fibanachi</p></div>
+</section>
+  <section data-l="en" lang="en">
+<h2>Why survival co-op is so rare</h2>
+<p class="lead-p">Co-op already works in LFS, and it is what players praise most. But real survival for two, with a shared base and a shared world, is much harder than it looks.</p>
+<p>Even in Last Day on Earth, playing together exists in specific places: the city in the Crater, clans, co-op locations. Now I understand why. Put two players in one world and questions appear at once: whose world is it, whose time of day, whose chest, who is to blame when items go missing.</p>
+<h2>What the first test on two iPhones showed</h2>
+<p>I put two iPhones in front of me and joined them in co-op. Running and fighting together worked, but three things showed up right away:</p>
+<ul><li>one phone had day, the other had night;</li><li>the other player could not see my base, and I could not see theirs;</li><li>on their phone, my hero walked through their walls.</li></ul>
+<p>These are not three small bugs but one big question: whose world are you playing in. Until that is settled, problems like these will only multiply.</p>
+<h2>The main question: whose world is it</h2>
+<p>We chose a hybrid, the Shared Camp: one world for two on a server and a shared base, with personal rights on every item.</p>
+<div class="tw"><table><thead><tr><th>Option</th><th>How it works</th><th>Strength</th><th>Weakness</th></tr></thead><tbody>
+<tr><td>Host's world</td><td>the guest visits a friend's world with their own hero</td><td>simple, one source of truth</td><td>the guest can take or break things</td></tr>
+<tr><td>Bases side by side</td><td>each has a home, the homes are connected</td><td>personal stays personal</td><td>it is being neighbours, not surviving together</td></tr>
+<tr><td>Shared save</td><td>one world for two with no rules</td><td>the most "together"</td><td>the most arguments and lost progress</td></tr>
+<tr class="pick"><td>Shared Camp</td><td>one server world, a shared base, rights on every item</td><td>you survive together, but nothing can be stolen</td><td>needs a server and more work</td></tr>
+</tbody></table></div>
+<p>The idea is simple: "Last Day for two". Just you and a friend, no strangers and no PvP.</p>
+<h2>The Shared Camp: a base for two</h2>
+<p>The camp has one time of day, one location reset and one set of raids for both of you. The base sits on a plot twice the normal size, clear of decor, and you build it together.</p>
+<p>The core rule: <b>every structure has an owner, whoever placed it</b>.</p>
+<ul><li>Either player can upgrade walls and floors.</li><li>You can only demolish your own pieces. Demolishing your partner's piece needs their confirmation.</li><li>Each player has their own bed and respawn point.</li></ul>
+<h2>Chests: you decide what is personal</h2>
+<p>When you place a chest, you choose its type.</p>
+<div class="tw"><table><thead><tr><th>Chest type</th><th>Who can open it</th><th>What for</th></tr></thead><tbody>
+<tr><td>Personal</td><td>only the owner; the partner sees a lock and a name</td><td>nobody touches your stuff</td></tr>
+<tr><td>Shared</td><td>both</td><td>a common resource store</td></tr>
+<tr><td>Trade</td><td>each has their own half; the swap needs two confirmations</td><td>fair trades, no "give it now, I'll pay later"</td></tr>
+<tr><td>Parcel</td><td>one puts items in, only the other can take them</td><td>leave items for a friend who is offline</td></tr>
+<tr><td>Code</td><td>whoever knows the code</td><td>for later, if a camp gets more than two players</td></tr>
+</tbody></table></div>
+<p>Every chest has a <b>log</b>: "Misha took 3 planks, 12:04", "Igor added 10 nails". The "who stole it" argument is settled in a second.</p>
+<h2>Purchases are never lost, loot is shared fairly</h2>
+<p>Everything bought with real money is bound to the account. It cannot be put in a chest, dropped, traded or lost on death. Your friend can only see it. Whoever supported the game can never lose anything.</p>
+<ul><li>on expeditions, each player sees their own chest contents;</li><li>from a boss, everyone in the fight gets their own drop, tokens and XP;</li><li>a dropped item can only be picked up by its owner for the first 60 seconds;</li><li>a death bag can only be opened by its owner;</li><li>trading only through the trade window, both confirm;</li><li>no friendly fire.</li></ul>
+<h2>You survive together</h2>
+<ul><li><b>Revive your friend.</b> A wounded friend goes down, and you have 30 seconds to get them up with a bandage.</li><li><b>Shared stations.</b> Anyone can start the forge or the drill; the result goes to whoever started it.</li><li><b>Raids on the shared base.</b> Their strength depends on how many players are online. When both are offline, there are no raids.</li><li><b>Quests and progress are personal</b>, but a kill or a pulled switch counts for both when you are together.</li><li><b>Hunger, thirst, level and skills</b> are each player's own.</li></ul>
+<h2>If you fall out</h2>
+<p>The rules for leaving are known in advance: a player sees them when accepting the invite.</p>
+<ul><li>The camp belongs to whoever created it. The invited player can leave at any time.</li><li>The leaver takes everything from their personal chests; it arrives as a parcel.</li><li>For their own structures they get half the materials back.</li><li>The shared store stays in the camp.</li></ul>
+<h2>What's next</h2>
+<p>The Shared Camp will ship as a separate big update together with server-based play, so you can play from different networks. There is no date yet: first we make it right, then we make it fast.</p>
+<p>Already in 0.2.2, local-network co-op gets the most important fixes (planned):</p>
+<ul><li>time of day always follows the host;</li><li>co-op starts on expeditions, and for now each player keeps their own base;</li><li>a death bag can only be opened by its owner.</li></ul>
+<div class="ask"><p>What would you add to the camp rules? Tell us in the <a href="https://t.me/fibsail">Telegram</a> comments, I read everything. Igor, Fibanachi</p></div>
+</section>
+  <p class="foot"><span data-l="ru">Планы могут меняться по мере разработки.</span><span data-l="en">Plans may change during development.</span></p>
+</main>
+<script>
+(function(){
+  function apply(l){document.documentElement.lang=l;document.querySelectorAll(".lang button").forEach(function(b){b.setAttribute("aria-pressed",String(b.dataset.set===l))});try{localStorage.setItem("lfs_lang",l)}catch(e){}}
+  document.querySelectorAll(".lang button").forEach(function(b){b.addEventListener("click",function(){apply(b.dataset.set)})});
+  var s="ru";try{var v=localStorage.getItem("lfs_lang");if(v==="ru"||v==="en")s=v;else if(!/^ru|^uk|^be|^kk/i.test(navigator.language||"ru"))s="en"}catch(e){}
+  apply(s);
+})();
+</script>
+</body>
+</html>
