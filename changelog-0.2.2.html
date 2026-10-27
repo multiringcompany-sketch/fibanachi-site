@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Last Fibanachi Survival 0.2.2: полный список изменений / full changelog.">
+<meta name="theme-color" content="#14110f">
+<meta property="og:title" content="Last Fibanachi Survival 0.2.2: полный список изменений">
+<meta property="og:image" content="https://fibanachi.com/img/forest022.jpg">
+<meta property="og:image:width" content="1296">
+<meta property="og:image:height" content="816">
+<meta property="og:url" content="https://fibanachi.com/changelog-0.2.2.html">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<title>0.2.2 Changelog | Last Fibanachi Survival</title>
+<link rel="preload" href="fonts/fira-sans-extra-condensed-cyrillic-900-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="fonts/fonts.css">
+<style>
+:root{--soot:#14110f;--concrete:#1d1a17;--slab:#26221e;--seam:rgba(236,226,212,.09);--seam-2:rgba(236,226,212,.18);--bone:#efe8dc;--ash:#a39a8e;--dust:#766e64;--rust:#c9472b;--rust-hi:#e2593a;--gas:#8fae5a;--display:"Fira Sans Extra Condensed","Arial Narrow",sans-serif;--body:"Fira Sans","Segoe UI",system-ui,sans-serif;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--soot);color:var(--bone);font:400 17px/1.6 var(--body);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.bar{position:sticky;top:0;z-index:5;background:rgba(20,17,15,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--seam)}
+.bar .in{max-width:860px;margin:0 auto;padding:0 16px;height:60px;display:flex;align-items:center;gap:16px}
+.back{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font:700 17px/1 var(--display);letter-spacing:.04em;text-transform:uppercase}
+.back:hover{color:var(--rust-hi)}
+.back img{width:26px;height:26px}
+.lang{margin-left:auto;display:inline-flex;border:1px solid var(--seam-2)}
+.lang button{font:700 14px/1 var(--display);letter-spacing:.06em;color:#d9d1c5;background:transparent;border:0;padding:0 11px;min-height:36px;cursor:pointer}
+.lang button[aria-pressed="true"]{background:var(--bone);color:var(--soot)}
+main{max-width:860px;margin:0 auto;padding:48px 16px 80px}
+.kicker{font:700 15px/1 var(--display);letter-spacing:.12em;text-transform:uppercase;color:var(--rust-hi)}
+h1{font:900 clamp(44px,9vw,84px)/.92 var(--display);text-transform:uppercase;margin:12px 0 18px;letter-spacing:-.01em}
+.meta{color:var(--ash);font-size:15px;display:flex;flex-wrap:wrap;gap:6px 18px;margin-bottom:28px}
+.meta b{color:var(--bone);font-weight:600}
+.dl{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 40px}
+.btn{display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:0 20px;font:800 18px/1 var(--display);letter-spacing:.05em;text-transform:uppercase;text-decoration:none;border:1px solid var(--seam-2)}
+.btn.rust{background:var(--rust);border-color:var(--rust);color:#fff}
+.btn:hover{border-color:var(--rust-hi)}
+.btn small{font:500 13px/1 var(--body);opacity:.8;text-transform:none;letter-spacing:0}
+h2{font:800 30px/1 var(--display);text-transform:uppercase;letter-spacing:.02em;margin:40px 0 14px;padding-top:18px;border-top:1px solid var(--seam)}
+h2.known{color:var(--ash)}
+ul{margin:0;padding:0;list-style:none;display:grid;gap:12px}
+li{position:relative;padding-left:22px;color:#d6cdc0}
+li::before{content:"";position:absolute;left:0;top:.62em;width:9px;height:9px;background:var(--rust)}
+h2.known + ul li::before{background:var(--dust)}
+li b{color:var(--bone);font-weight:600}
+code{font:500 .9em/1 ui-monospace,Consolas,monospace;background:var(--slab);padding:2px 5px}
+.foot{margin-top:56px;color:var(--dust);font-size:14px;border-top:1px solid var(--seam);padding-top:18px}
+[data-l]{display:none}
+html[lang="ru"] [data-l="ru"],html[lang="en"] [data-l="en"]{display:block}
+html[lang="ru"] .meta[data-l="ru"],html[lang="en"] .meta[data-l="en"]{display:flex}
+html[lang="ru"] span[data-l="ru"],html[lang="en"] span[data-l="en"]{display:inline}
+@media (max-width:520px){body{font-size:16px}h2{font-size:26px}}
+</style>
+</head>
+<body>
+<header class="bar"><div class="in">
+  <a class="back" href="./#versions"><img src="favicon-32.png" alt=""><span data-l="ru">← На сайт</span><span data-l="en">← Back to site</span></a>
+  <div class="lang" role="group" aria-label="Language"><button type="button" data-set="ru" aria-pressed="true">RU</button><button type="button" data-set="en" aria-pressed="false">EN</button></div>
+</div></header>
+<main>
+  <div class="kicker"><span data-l="ru">Обновление · 27.10.2026</span><span data-l="en">Update · 27 Oct 2026</span></div>
+  <h1>Last Fibanachi Survival 0.2.2</h1>
+  <div class="meta" data-l="ru"><span><b>Android</b> ставится поверх 0.2.1, сохранения остаются</span><span><b>Windows</b> распакуй и запусти .exe</span></div>
+  <div class="meta" data-l="en"><span><b>Android</b> installs over 0.2.1, saves are kept</span><span><b>Windows</b> unzip and run the .exe</span></div>
+  <div class="dl">
+    <a class="btn rust" href="https://github.com/multiringcompany-sketch/fibanachi-site/releases/latest/download/LastFibanachiSurvival_Android.apk" download>APK <small>169 MB</small></a>
+    <a class="btn" href="https://github.com/multiringcompany-sketch/fibanachi-site/releases/latest/download/LastFibanachiSurvival_Windows.zip" download>Windows ZIP <small>135 MB</small></a>
+  </div>
+  <section data-l="ru" lang="ru">
+<h2>Новое</h2>
+<ul>
+<li><b>Новый лес.</b> Все деревья переделаны с нуля: ели высокие и молодые, лиственные зелёные, осенние и сухие.</li>
+<li><b>Авторежим.</b> На Домашней локации герой сам рубит деревья, добывает камень и собирает всё вокруг. Пока работает только дома.</li>
+<li><b>Чистый экран стройки.</b> В режиме строительства лишний интерфейс убирается.</li>
+<li><b>Предметы встают к стенам</b>, а не в середину клетки.</li>
+<li><b>Снос стал понятнее:</b> сразу видно, что именно будет снесено.</li>
+<li><b>Прочность шипов</b> видна полоской.</li>
+<li><b>Локации обновляются целиком</b> через время: ресурсы и лут возвращаются.</li>
+<li><b>Размер интерфейса</b> настраивается в меню паузы.</li>
+<li><b>Новый главный экран</b> в стиле минимализм, его выбрали в голосовании в Telegram.</li>
+<li><b>Кнопка ремонта</b> прямо в инвентаре.</li>
+</ul>
+<h2>Бой</h2>
+<ul>
+<li><b>Синяя зона больше не убежище.</b> Враги заходят в неё и атакуют. Раньше в ней можно было бить Брута и Мародёра, не получая урона.</li>
+<li><b>Новый навык</b> показывается уведомлением сбоку, а не окном на весь экран, которое мешало посреди драки.</li>
+</ul>
+<h2>Кооп</h2>
+<ul>
+<li><b>Время суток общее:</b> у гостя оно идёт по часам хоста.</li>
+<li><b>Рюкзак после смерти открывает только его владелец.</b> Другой игрок открыть его не сможет.</li>
+<li><b>Сгенерированные места в коопе</b> каждый раз новые и не запоминаются. Одиночная игра не изменилась.</li>
+<li><b>Дом пока не участвует в коопе.</b> Игра вдвоём начинается с вылазки, чтобы вернуться домой, выйди из коопа.</li>
+</ul>
+<h2>Удобство и исправления</h2>
+<ul>
+<li><b>Сундук:</b> нажми на предмет, чтобы увидеть, что это, прежде чем брать.</li>
+<li><b>Подбор предметов</b> стал быстрее и отзывчивее.</li>
+<li><b>Столкновения:</b> на Доме, Старте и Подстанции сквозь объекты больше не пройти.</li>
+<li><b>Подстанция</b> стала понятнее.</li>
+<li><b>Рывки на карте мира</b> восстанавливаются в реальном времени, даже когда игра закрыта: +1 каждые 12 минут.</li>
+</ul>
+<h2 class="known">Известные проблемы</h2>
+<ul>
+<li>iPhone пока на 0.2.1. Версия 0.2.2 для iOS выйдет через TestFlight после проверки Apple.</li>
+</ul>
+  </section>
+  <section data-l="en" lang="en">
+<h2>New</h2>
+<ul>
+<li><b>A new forest.</b> Every tree is rebuilt from scratch: tall and young spruces, green, autumn and dry broadleaf trees.</li>
+<li><b>Auto mode.</b> At Home the hero chops trees, mines stone and picks everything up on his own. Home only for now.</li>
+<li><b>Clean build screen.</b> Extra UI hides while you build.</li>
+<li><b>Items stand against walls</b>, not in the middle of the cell.</li>
+<li><b>Clearer demolishing:</b> you see exactly what will be removed.</li>
+<li><b>Spike wear</b> shows as a bar.</li>
+<li><b>Locations reset as a whole</b> over time: resources and loot come back.</li>
+<li><b>UI size</b> is in the pause menu.</li>
+<li><b>A new minimalist title screen</b>, picked in the Telegram poll.</li>
+<li><b>Repair button</b> right in the inventory.</li>
+</ul>
+<h2>Combat</h2>
+<ul>
+<li><b>The blue zone is no longer a shelter.</b> Enemies follow you in and attack. Before, you could hit the Brute and the Marauder there without taking damage.</li>
+<li><b>A new skill</b> shows as a side notice instead of a full-screen window that got in the way mid-fight.</li>
+</ul>
+<h2>Co-op</h2>
+<ul>
+<li><b>Shared time of day:</b> the guest's clock follows the host.</li>
+<li><b>A death bag opens only for its owner.</b> Everyone else sees "Only its owner can open this bag."</li>
+<li><b>Generated places in co-op</b> are fresh every time and not remembered. Solo play is unchanged.</li>
+<li><b>Home is not part of co-op yet.</b> Playing together starts on an expedition; leave co-op to go home.</li>
+</ul>
+<h2>Quality of life and fixes</h2>
+<ul>
+<li><b>Chests:</b> tap an item to see what it is before taking it.</li>
+<li><b>Picking up items</b> is faster and more responsive.</li>
+<li><b>Collisions:</b> no more walking through objects at Home, the Start camp and the Substation.</li>
+<li><b>The Substation</b> is easier to read.</li>
+<li><b>World Map dashes</b> come back in real time, even while the game is closed: +1 every 12 minutes.</li>
+</ul>
+<h2 class="known">Known issues</h2>
+<ul>
+<li>iPhone is still on 0.2.1. iOS 0.2.2 comes via TestFlight after Apple's review.</li>
+</ul>
+  </section>
+  <p class="foot"><span data-l="ru">SHA-256 файлов и все версии: на главной странице, раздел «Скачать».</span><span data-l="en">File SHA-256 and all versions: on the main page, Download section.</span></p>
+  <p class="foot"><a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a></p>
+</main>
+<script>
+(function(){
+  function apply(l){document.documentElement.lang=l;document.querySelectorAll(".lang button").forEach(function(b){b.setAttribute("aria-pressed",String(b.dataset.set===l))});try{localStorage.setItem("lfs_lang",l)}catch(e){}}
+  document.querySelectorAll(".lang button").forEach(function(b){b.addEventListener("click",function(){apply(b.dataset.set)})});
+  var s="ru";try{var v=localStorage.getItem("lfs_lang");if(v==="ru"||v==="en")s=v;else if(!/^ru|^uk|^be|^kk/i.test(navigator.language||"ru"))s="en"}catch(e){}
+  apply(s);
+})();
+</script>
+</body>
+</html>
